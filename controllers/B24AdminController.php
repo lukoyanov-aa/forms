@@ -13,9 +13,12 @@ use \yii\web\HttpException;
  */
 class B24AdminController extends B24Controller {
 
+    public $layout = '@app/modules/forms/views/layouts/admin.php';
+
     public function beforeAction($action) {
-        $request = Yii::$app->request;
-        if (null === $request->get('DOMAIN') or null === $request->post('member_id') or null === $request->post('AUTH_ID') or null === $request->post('REFRESH_ID')) {
+        $session = Yii::$app->session;
+        $portalOpened = $session->get('portalOpened');
+        if (!$portalOpened) {
             throw new HttpException(404, 'Приложение необходимо запустить из портала Битрикс24');
         }
         return parent::beforeAction($action);
