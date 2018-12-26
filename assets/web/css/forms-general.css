@@ -1,0 +1,55 @@
+@media screen and (max-width: 767px) {
+ 
+  .wrap>div.container{
+    padding-left: 0!important;
+    padding-right: 0!important;
+  }
+  
+  section>div.container .main-form .col-md-10{
+    padding-left: 0!important;
+    padding-right: 0!important;
+  }
+  
+  section>div.container .main-form .col-md-8{
+    padding-left: 0!important;
+    padding-right: 0!important;
+  }
+  
+  section > div.container .main-form>.col-md-2{
+    display: none!important;
+  }
+  
+  label, input, select {
+    font-size: 11px !important;
+  }
+  
+  label {
+    margin-bottom: 2px;
+  }
+  
+  .group-check{
+    margin-bottom: 10px!important;
+  }
+  
+  .form-group {
+    margin-bottom: 7px!important;
+  }
+  
+  .form-group-contact>div.col-md-8>div.row{
+    margin-right: 0px!important;
+    margin-left: 0!important;
+  } 
+  
+  button.btn{
+    width: 200px;
+    font-size: 14px;
+    padding: 10px 10px !important;
+  }
+  
+  input, select {
+    height: 30px !important;
+    border-radius: 15px !important;
+  }    
+   
+   
+}

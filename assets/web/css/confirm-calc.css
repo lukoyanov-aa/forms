@@ -1,0 +1,114 @@
+.landing-block .container{
+  margin-top: 85px!important;
+}
+
+.block-main{
+  padding-top: 30px;
+}
+
+.block-text{
+  padding: 15px 40px 30px 40px;
+  text-align: left;
+} 
+
+.block-text h1{
+  line-height: 2.8rem;
+  font-size: 28px;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  color: #2538a2;  
+}
+
+.block-text h2{
+  line-height: 2.5rem;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif; 
+}
+
+.block-text p{
+  line-height: 2.5rem;
+  font-weight: 300;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
+.block-text .block-regim{
+  font-size: 14px;
+  padding-top: 10px;
+  color: #2538a2;
+}
+
+.block-social, .block-zamer{
+  padding: 20px;
+  box-shadow: 7px 7px 35px 0 #cccccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.block-social a, .block-zamer a{
+  display: block;
+  text-decoration: underline;
+  font-weight: 400;
+  color: blue;
+  font-size: 18px;
+  line-height: 2.6rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.block-img-spacibo{
+  width: 260px;
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 780px) {
+  .block-text{
+    padding: 5px 10px 20px 10px;
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .block-text h1{
+    line-height: 2.5rem;
+    font-size: 18px; 
+  }
+
+  .block-text h2{
+    line-height: 2rem;
+    font-size: 16px;
+  }
+
+  .block-text p{
+    line-height: 2rem;
+    font-size: 12px;
+  }
+  
+  .block-img-spacibo {
+      width: 100px;
+      margin-top: 20px;
+  }
+  
+  .block-social a, 
+  .block-zamer a{
+    font-size: 13px;
+    line-height: 2rem;
+  }
+  
+  .block-social img,
+  .block-zamer img{
+    display: block!important;
+    width: 100%!important;
+  }
+  
+  .block-social, 
+  .block-zamer{
+    padding: 0px; 
+  }
+  
+  .block-zamer p,
+  .block-social p{
+    font-size: 10px;
+    line-height: 1.3;
+  }
+}
