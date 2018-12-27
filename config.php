@@ -4,8 +4,8 @@ return [
         // список конфигураций компонентов
     ],
     'params' => [
-        'applicationId' => 'local.5c23902eb79350.54010235',
-        'applicationSecret' => 'FPvok6Ip34rfEEXY6pxuiAkXycdo8KVKBlRjkGyZC9agEJtMpa',   
+        'applicationId' => 'local.5c24a865a18831.59300246',
+        'applicationSecret' => 'THqTE9pilRy7j8Asgm3854uuqPcatqjiAmsjQPGFhpeGVrGUsZ',   
         'b24PortalTable' => 'b24portal'
     ],
 ];

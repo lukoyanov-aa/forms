@@ -1,43 +1,37 @@
 <?php
 
 use yii\helpers\Html;
-//use yii\grid\GridView;
-use yii\bootstrap\Tabs;
+use yii\grid\GridView;
+use yii\widgets\Pjax;
+/* @var $this yii\web\View */
+/* @var $searchModel app\modules\forms\models\turn\b24ManagerSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'B24portals';
+$this->title = 'B24 Managers';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class = "col-xs-12 col-md-4">
-    <ul class="nav">
-        <li class="nav-header">Главные ссылки</li>
-        <li class="active"><a href="#">Главная</a></li>
-        <li><a href="#">Обратная связь</a></li>
-        <li><a href="#">Каталог</a></li>
-        <li class="nav-header">Дополнительные</li>
-        <li><a href="#">Наши филиалы</a></li>
-        <li><a href="#">Календарь мероприятий</a></li>
-        <li class="nav-divider"></li>
-        <li><a href="#">Вакансии</a></li>
-    </ul>
-</div>
-<div class="b24portal-index">
+<div class="b24-manager-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
-</div>
-<div class="b24-default-index">
-    <h1><?= $this->context->action->uniqueId ?></h1>
-    <p>
-        This is the view content for action "<?= $this->context->action->id ?>".
-        The action belongs to the controller "<?= get_class($this->context) ?>"
-        in the "<?= $this->context->module->id ?>" module.
-    </p>
-    <p>
-        You may customize this page by editing the following file:<br>
-        <code><?= __FILE__ ?></code>
-    </p>
+    <?php Pjax::begin(); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?php //echo '<pre>' .print_r($arCurrentB24User, true). '<pre>'; ?>
+        <?= Html::a('Create B24 Manager', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id',
+            'name',
+            'portal',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+    <?php Pjax::end(); ?>
 </div>

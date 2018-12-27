@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Url;
-$url = Url::toRoute(['admin/add-portal-auth']);
+$url = Url::toRoute(['b24-admin/add-portal-auth']);
 //echo
 
 $js = <<<JS
@@ -9,8 +9,8 @@ $js = <<<JS
 		BX24.init(function(){                    
                     var authParams = BX24.getAuth(), 
                             params = authParams
-                            params = array_merge({operation: 'add_portal_auth'}, authParams),
-                            params = array_merge(params, {})
+                            //params = array_merge({operation: 'add_portal_auth'}, authParams)
+                            //params = array_merge(params, {})
                     $.ajax({
                             url: "$url",
                             data: params,
