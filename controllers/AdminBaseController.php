@@ -3,15 +3,9 @@
 namespace app\modules\forms\controllers;
 
 use Yii;
-use app\modules\forms\models\b24\B24portal; //???
 use \yii\web\HttpException;
 
-/**
- * Description of appController
- *
- * @author Админ
- */
-class B24AdminBaseController extends B24AdminController {
+class AdminBaseController extends B24AdminController {
 
     public function beforeAction($action) {
         $this->enableCsrfValidation = false;
