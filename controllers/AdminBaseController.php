@@ -24,10 +24,11 @@ class AdminBaseController extends B24AdminController {
             throw new HttpException(403, 'В доступе отказано');
         }
         $session = Yii::$app->session;
-        $portalOpened = $session->get('portalOpened');
-        if (!$portalOpened) {
+//        $portalOpened = $session->get('portalOpened');
+//        if (!$portalOpened) {
             $session->set('portalOpened', true);
-        }
+            $session['AccessParams'] = $arAccessParams;             
+//        }
 
         return parent::beforeAction($action);
     }

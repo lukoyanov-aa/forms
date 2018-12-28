@@ -1,4 +1,5 @@
 <?php
+
 namespace app\modules\forms\controllers;
 
 use Yii;
@@ -11,13 +12,12 @@ use yii\filters\VerbFilter;
 /**
  * TurnController implements the CRUD actions for b24Manager model.
  */
-class TurnController extends B24AdminSecondController
-{
+class TurnController extends B24AdminSecondController {
+
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -32,14 +32,13 @@ class TurnController extends B24AdminSecondController
      * Lists all b24Manager models.
      * @return mixed
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         $searchModel = new b24ManagerSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -50,10 +49,9 @@ class TurnController extends B24AdminSecondController
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id, $portal)
-    {
+    public function actionView($id, $portal) {
         return $this->render('view', [
-            'model' => $this->findModel($id, $portal),
+                    'model' => $this->findModel($id, $portal),
         ]);
     }
 
@@ -62,17 +60,37 @@ class TurnController extends B24AdminSecondController
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new b24Manager();
-
+        $session = Yii::$app->session;
+        $AccessParams = $session->get('AccessParams');
+        $portal = $AccessParams['domain'];
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id, 'portal' => $model->portal]);
         }
 
+        $component = new \app\components\b24Tools();
+        $b24App = $component->connect($this->moduleParams['applicationId'], $this->moduleParams['applicationSecret'], null, null, $this->moduleParams['applicationScope'], $AccessParams);
+        $obB24Users = new \Bitrix24\User\User($b24App);
+        // \CRM\Lead($obB24App);
+        $b24users = $obB24Users->get('ID', '', ['ACTIVE' => true]);
+        $usersList = $this->usersList($b24users);
+
+        //Yii::warning($b24users);
+        //->add($liedFieldsArray);
+        $model->portal = $portal;
         return $this->render('create', [
-            'model' => $model,
+                    'model' => $model,
+                    'users' => $usersList,
         ]);
+    }
+
+    private function usersList($users) {
+        $usersList = array();
+        foreach ($users['result'] as $user) {
+            $usersList[$user['ID']] = $user['NAME'] . ' ' . $user['LAST_NAME'];
+        }
+        return $usersList;
     }
 
     /**
@@ -83,16 +101,29 @@ class TurnController extends B24AdminSecondController
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id, $portal)
-    {
+    public function actionUpdate($id, $portal) {
         $model = $this->findModel($id, $portal);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id, 'portal' => $model->portal]);
         }
 
+
+        $component = new \app\components\b24Tools();
+        $b24App = $component->connect($this->moduleParams['applicationId'], $this->moduleParams['applicationSecret'], null, null, $this->moduleParams['applicationScope'], $AccessParams);
+        $obB24Users = new \Bitrix24\User\User($b24App);
+        // \CRM\Lead($obB24App);
+        $b24users = $obB24Users->get('ID', '', ['ACTIVE' => true]);
+        $usersList = $this->usersList($b24users);
+
+        //Yii::warning($b24users);
+        //->add($liedFieldsArray);
+        //$model->portal = $portal;
+
+
         return $this->render('update', [
-            'model' => $model,
+                    'model' => $model,
+                    'users' => $usersList,
         ]);
     }
 
@@ -104,8 +135,7 @@ class TurnController extends B24AdminSecondController
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id, $portal)
-    {
+    public function actionDelete($id, $portal) {
         $this->findModel($id, $portal)->delete();
 
         return $this->redirect(['index']);
@@ -119,14 +149,15 @@ class TurnController extends B24AdminSecondController
      * @return b24Manager the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id, $portal)
-    {
-        if (($model = b24Manager::findOne(['id' => $id, 'portal' => $portal])) !== null) {
+    protected function findModel($id, $portal) {
+        Yii::warning($portal);
+        if (($model = b24Manager::findOne(['id' => $id, 'portal' => 'o-mir.bitrix24'])) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
 }
 
 //

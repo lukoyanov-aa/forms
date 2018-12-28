@@ -34,7 +34,7 @@ use app\modules\forms\models\tutn\B24CalcGroupManager;
 class FormController extends B24Controller {
     
     public function beforeAction($action) {
-        $this->enableCsrfValidation = false;
+        //$this->enableCsrfValidation = false;
         return parent::beforeAction($action);
     }
 
@@ -53,8 +53,6 @@ class FormController extends B24Controller {
 //    }   
     public function actionCalculatorGatesSlidingDoorhan() { //доделать
         $request = Yii::$app->request;
-        $referrer = Yii::$app->request->referrer;
-        Yii::warning($referrer, __METHOD__);
         $model = new CalculatorGatesSlidingDoorhanForm();
         $gateFillings = $model::GATE_FILLINGS;
         $wicket = $model::WICKET;

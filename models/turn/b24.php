@@ -39,8 +39,8 @@ class b24Manager extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Менеджер',
-            'portal' => 'Портал',
+            'name' => 'Name',
+            'portal' => 'Portal',
         ];
     }
 }
