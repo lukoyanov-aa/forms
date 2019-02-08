@@ -2,58 +2,79 @@
 
 use yii\helpers\Html;
 use app\modules\forms\assets\formsAsset;
-$assetsUrl=formsAsset::register($this);
+
+$assetsUrl = formsAsset::register($this);
 $this->registerCssFile($assetsUrl->baseUrl . '/css/confirm-event-registration.css');
-$this->registerJSFile($assetsUrl->baseUrl.'/js/yametrika-vorota-dom.js');
-if ($contactId) {
-    $js = <<<JS
-        window.onload = function() {
-            yaCounter$formSettings->iya_counter_id.reachGoal('$formSettings->cya_metrika_target', {'$model->url': {target: '$model->target'}});
-        }
+$yametrika = <<<JS
+        (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter51320992 = new Ya.Metrika2({
+                    id:51320992,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/tag.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks2");
 JS;
-} else {
-    $js = <<<JS
+$this->registerJs($yametrika);
+if ($contactId) {
+    $yametrika_target = <<<JS
         window.onload = function() {
             yaCounter$formSettings->iya_counter_id.reachGoal('$formSettings->cya_metrika_target', {'$model->url': {target: '$model->target'}});
         }
 JS;
 }
-$this->registerJs($js);
+$this->registerJs($yametrika_target);
 ?>
 
 <section class="bg-light u-content-space">
-        <div class="container">
-          
-          <div class="block-main row"> 
+    <div class="container">
+
+        <div class="block-main row"> 
             <div class="col-md-1"></div>
             <div class="col-md-5 ">
-               <header class="text-center w-md-50 mx-auto block-text">
-                  <h1 class="h4">Заявка принята!</h1>
-                  <h2 class="h5">Мы свяжемся с Вами в ближайшее время и сообщим всю интересующую Вас информацию!</h2>
-                  <img class="block-img-spacibo" src="https://files.annaholod.ru/img/ico-spacibo.png" alt="Спасибо">
+                <header class="text-center w-md-50 mx-auto block-text">
+                    <h1 class="h4">Заявка принята!</h1>
+                    <h2 class="h5">Мы свяжемся с Вами в ближайшее время и сообщим всю интересующую Вас информацию!</h2>
+                    <img class="block-img-spacibo" src="https://files.annaholod.ru/img/ico-spacibo.png" alt="Спасибо">
                 </header>
             </div>
             <div class="col-md-5">
                 <div class="row block-social">
-                  <div class="col-md-8 col-xs-8">
-                    <a class="h5" href="https://www.instagram.com/anna_holod_school/" target="_blank">Посетите нашу страницу в Instagram</a>
-                    <p class="">Вы увидите много выполненных работ, а также сможете почитать отзывы наших учеников :)</p>
-                  </div>
-                  <div class="col-md-4 col-xs-4">
-                    <img class="" src="https://files.annaholod.ru/img/ico-youtube.jpg" alt="Иконка инстаграм">
-                  </div>
-               </div>
-               <div class="row block-zamer">
-                  <div class="col-md-8 col-xs-8">
-                    <a class="h5" href="https://www.youtube.com/channel/UCADHydG-5zaCW288q1lD9fw" target="_blank">Посетите наш канал на YouTube</a>
-                    <p class="">Вы увидите как проходили мастер-классы, а ткаже результаты нашего творчества!</p>
-                  </div>
-                  <div class="col-md-4 col-xs-4">
-                    <img class="" src="https://files.annaholod.ru/img/ico-instagram.jpg" alt="Иконка YouTube">
-                  </div>
-               </div>
+                    <div class="col-md-8 col-xs-8">
+                        <a class="h5" href="https://www.instagram.com/anna_holod_school/" target="_blank">Посетите нашу страницу в Instagram</a>
+                        <p class="">Вы увидите много выполненных работ, а также сможете почитать отзывы наших учеников :)</p>
+                    </div>
+                    <div class="col-md-4 col-xs-4">
+                        <img class="" src="https://files.annaholod.ru/img/ico-youtube.jpg" alt="Иконка инстаграм">
+                    </div>
+                </div>
+                <div class="row block-zamer">
+                    <div class="col-md-8 col-xs-8">
+                        <a class="h5" href="https://www.youtube.com/channel/UCADHydG-5zaCW288q1lD9fw" target="_blank">Посетите наш канал на YouTube</a>
+                        <p class="">Вы увидите как проходили мастер-классы, а ткаже результаты нашего творчества!</p>
+                    </div>
+                    <div class="col-md-4 col-xs-4">
+                        <img class="" src="https://files.annaholod.ru/img/ico-instagram.jpg" alt="Иконка YouTube">
+                    </div>
+                </div>
             </div>
             <div class="col-md-1"></div>         
-          </div>
         </div>
-      </section>
+    </div>
+</section>
