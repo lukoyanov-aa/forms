@@ -25,7 +25,7 @@ $this->registerCssFile($assetsUrl->baseUrl . '/css/event-registration.css');
                         <p>Оставьте заявку, мы сообщим Вам стоимость и подробную программу мастер-класса</p>
                     </div>  
                     <div class="col-md-12">
-                        <?= $form->field($model, 'event')->dropDownList(ArrayHelper::map($events, 'iid', 'cname'),['class' => 'form-control rounded form-group'])->label('Интересующий мастер-класс') ?>                        
+                        <?= $form->field($model, 'event_id')->dropDownList(ArrayHelper::map($events, 'iid', 'cname'),['class' => 'form-control rounded form-group'])->label('Интересующий мастер-класс') ?>                        
                     </div>
                     <div class="name col-xs-12 col-sm-6 col-md-6">                    
                         <?= $form->field($model, 'name')->textInput(['class' => 'form-group form-control rounded'])->label('Ваше имя?') ?>

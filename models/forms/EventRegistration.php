@@ -11,8 +11,9 @@ namespace app\modules\forms\models\forms;
 //use app\modules\forms\models\b24\ModelB24;
 //use app\modules\forms\models\forms\tools\SendB24;
 //use app\modules\forms\models\forms\BaseForm;
-use app\modules\forms\models\settings\FTargetUrl;
+
 use app\modules\forms\models\events\EFEvents;
+use Yii;
 
 /**
  * Description of EntryForm
@@ -27,19 +28,19 @@ class EventRegistration extends BaseForm {
 
     public $event;
     public $event_type;
+    public $event_id;
 
     public function rules() {
-        return array_merge(parent::rules(), [[['event', 'event_type'], 'string']]);
+        return array_merge(parent::rules(), [[['event_id', 'event', 'event_type'], 'string']]);
     }
 
-    public function addLied($obB24App = null, $managerId = 0) {
-        $arrTargetUrl = FTargetUrl::find()->where(['ctarget_url' => $this->target . '_' . $this->url])->one();
-        $lied = parent::addLied($obB24App, $managerId, $arrTargetUrl->csource_id, $arrTargetUrl->ctitle, $this->liedFields);
+    public function addLied($obB24App, $actionName) {
+        $lied = parent::addLied($obB24App, $actionName, $this->liedFields, $emailSend);
         return($lied);
     }
 
-    public function getEventModel() {
-        return EFEvents::find()->where(['iid' => $this->event])->one();
+    public function getEventModel() {   
+        return EFEvents::find()->where(['iid' => $this->event_id])->one();
     }    
 
     public function getEvents($event_type = null, $event = null) {
@@ -52,7 +53,7 @@ class EventRegistration extends BaseForm {
         }
     }
     
-    protected function getLiedFields() {
+    protected function getLiedFields() {        
         $liedFields = [
             "UF_CRM_1549551180" => $this->eventModel->eventTypeName,
             "UF_CRM_1549551207" => $this->eventModel->cityName,
@@ -62,9 +63,9 @@ class EventRegistration extends BaseForm {
         return $liedFields;
     }
 
-    protected function generateCommentsText() {
-        $commentsText .= 'Интересующее мероприятие: ' . $this->eventModel->cname . '<br/>';
-        return $commentsText;
-    }
+//    protected function generateCommentsText() {
+//        $commentsText .= 'Интересующее мероприятие: ' . $this->eventModel->cname . '<br/>';
+//        return $commentsText;
+//    }
 
 }

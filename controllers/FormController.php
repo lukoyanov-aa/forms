@@ -16,8 +16,7 @@ use \yii\web\HttpException;
 //use app\modules\forms\models\forms\CallForm;
 use app\modules\forms\models\forms\EventRegistration;
 use app\modules\forms\models\events\EFEventsSearch;
-use app\modules\forms\models\turn\TFGroupsManagersSearch;
-use app\modules\forms\models\settings\FForms;
+
 
 //
 //use app\modules\b24\models\B24portalSearch;
@@ -357,14 +356,11 @@ class FormController extends B24Controller {
         $request = Yii::$app->request;
         $model = new EventRegistration();        
         if ($model->load($request->post()) && $model->validate()) {
-            $actionName = Yii::$app->controller->action->id;
-            $formSettings = FForms::find()->where(['cname' => $actionName])->one();
-            $managerId = TFGroupsManagersSearch::getNextManager($formSettings->igroup_id);
+            $actionName = Yii::$app->controller->action->id;            
             $component = new \app\components\b24Tools();
             $this->arB24App = $component->connect($this->moduleParams['applicationId'], $this->moduleParams['applicationSecret'], $this->moduleParams['b24PortalTable'], $this->moduleParams['b24PortalName'], $this->moduleParams['applicationScope']);
-
-            $lied = $model->addLied($this->arB24App, $managerId);
-            Yii::warning($lied);
+            $lied = $model->addLied($this->arB24App, $actionName);
+            //Yii::warning($lied);
             if (!$lied) {
                 Yii::error('создать Лид не удалось', __METHOD__);
                 Yii::warning($model, __METHOD__);

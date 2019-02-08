@@ -2,6 +2,11 @@
 
 namespace app\modules\forms\models\forms;
 
+use app\modules\forms\models\settings\FTargetUrl;
+use app\modules\forms\models\turn\TFGroupsManagersSearch;
+use app\modules\forms\models\settings\FForms;
+use Yii;
+
 class BaseForm extends \yii\base\Model {
 
     const NAME_EMPTY = "Без имени ";
@@ -25,62 +30,66 @@ class BaseForm extends \yii\base\Model {
         ];
     }
 
-    public function addLied($obB24App = null, $managerId = 0, $sourceId = array(), $title = '', $liedFields = array()) {
-        if (!$obB24App) {
-            return false;
-        }
-        if ($obB24App and $managerId != 0) {
-            $nameText = $this->parsNameText($this->name);
-            $phoneArray = $this->parsPhoneArray($this->phone);
-            $titleText = $this->parsTitleText($title);
-            $commentsText = $this->generateCommentsText();
-            $baseFieldsArray = [
-                "TITLE" => $titleText,
-                //"ASSIGNED_BY_ID" => $managerId,
-                "ASSIGNED_BY_ID" => $managerId,
-                "NAME" => $nameText,
-                "SOURCE_ID" => $sourceId,
-                "PHONE" => $phoneArray,
-                "COMMENTS" => $commentsText,
-                "UTM_TERM" => $this->utm_term,
-                "UTM_SOURCE" => $this->utm_source,
-                "UTM_MEDIUM" => $this->utm_medium,
-                "UTM_CONTENT" => $this->utm_content,
-                "UTM_CAMPAIGN" => $this->utm_campaign,
-                    //"UF_CRM_1532342063" => $productType,
-            ];
+    //public function addLied($obB24App = null, $managerId = 0, $sourceId = array(), $title = '', $liedFields = array()) {
+    public function addLied($obB24App, $actionName, $liedFields = array()) {
 
-            $liedFieldsArray = array_merge($baseFieldsArray, $liedFields);
-            //Yii::warning($liedFieldsArray);
-            $obB24Lied = new \Bitrix24\CRM\Lead($obB24App);
-            $lied = $obB24Lied->add($liedFieldsArray);
-            return $lied;
-        } else {
-            return false;
+        $formSettings = FForms::find()->where(['cname' => $actionName])->one();
+        $managerId = TFGroupsManagersSearch::getNextManager($formSettings->igroup_id);
+        $arrTargetUrl = FTargetUrl::find()->where(['ctarget_url' => $this->target . '_' . $this->url])->one();
+        $nameText = $this->nameText;
+        $phoneArray = $this->phoneArray;
+        $titleText = $this->parsTitleText($arrTargetUrl->ctitle);
+        $commentsText = $this->generateCommentsText();
+        $baseFieldsArray = [
+            "TITLE" => $titleText,
+            "ASSIGNED_BY_ID" => $managerId,
+            "NAME" => $nameText,
+            "SOURCE_ID" => $arrTargetUrl->csource_id,
+            "PHONE" => $phoneArray,
+            "COMMENTS" => $commentsText,
+            "UTM_TERM" => $this->utm_term,
+            "UTM_SOURCE" => $this->utm_source,
+            "UTM_MEDIUM" => $this->utm_medium,
+            "UTM_CONTENT" => $this->utm_content,
+            "UTM_CAMPAIGN" => $this->utm_campaign,
+        ];
+
+        $liedFieldsArray = array_merge($baseFieldsArray, $liedFields);
+        if (true) {
+            Yii::$app->mailer->compose()
+                    ->setFrom('info@annaholod.ru')
+                    ->setTo('info@annaholod.ru')
+                    ->setSubject($titleText)
+                    ->setTextBody('Текст сообщения')
+                    ->setHtmlBody($this->generateEmailBodyText($liedFields))
+                    ->send();
         }
+        $obB24Lied = new \Bitrix24\CRM\Lead($obB24App);
+        $lied = $obB24Lied->add($liedFieldsArray);
+        return $lied;
     }
 
     protected function generateCommentsText() {
         return '';
     }
 
-    private function parsNameText($name = '') {
-        if ($name) {
-            return $name;
+    protected function getNameText() {
+        if ($this->name) {
+            return $this->name;
         } else {
             return 'Без имени';
         }
     }
 
-    private function parsPhoneArray($phone = null) {
-        if (!$phone) {
+    protected function getPhoneArray() {
+        if (!$this->phone) {
             return [];
         }
-        $phoneArray = array(array("VALUE" => $this->parsPhoneText($phone), "VALUE_TYPE" => "WORK"));
+        $phoneArray = array(array("VALUE" => $this->phoneText, "VALUE_TYPE" => "WORK"));
         return $phoneArray;
     }
 
-    private function parsTitleText($title = '') {
+    protected function parsTitleText($title = '') {
         $name = '';
         if ($this->name) {
             $name = $this->name;
@@ -94,9 +103,24 @@ class BaseForm extends \yii\base\Model {
         }
     }
 
-    private function parsPhoneText($phone) {
-        $phoneText = "+" . preg_replace("/[^0-9]/", '', $phone);
+    protected function getPhoneText() {
+        $phoneText = "+" . preg_replace("/[^0-9]/", '', $this->phone);
         return $phoneText;
+    }
+
+    protected function parsFieldsToText($param) {
+        $text = '';
+        foreach ($param as $key => $value) {
+            $text .= /*$key.': '.*/$value.'<br>';
+        }
+        return $text;
+    }
+
+    protected function generateEmailBodyText($fields) {
+        $text = 'Имя: ' . $this->nameText. '<br>';
+        $text .= 'Телефон: ' . $this->phoneText. '<br>';
+        $text .= $this->parsFieldsToText($fields);
+        return $text;
     }
 
 }
