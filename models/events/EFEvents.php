@@ -17,8 +17,6 @@ use Yii;
  * @property int $icity_id
  * @property string $cadress
  * @property double $fbase_price
- * @property double $fprice1
- * @property double $fprice2
  * @property string $dprice1_date
  * @property string $dprice2_date
  */
@@ -36,11 +34,11 @@ class EFEvents extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['cname', 'itype_id', 'bopened', 'ddate_event', 'icity_id', ], 'required'],
+            [['cname', 'itype_id', 'bopened', 'ddate_event', 'icity_id', 'cbase_text'], 'required'],
             [['itype_id', 'bopened', 'imin', 'imax', 'icity_id'], 'integer'],
             [['ddate_event', 'dprice1_date', 'dprice2_date'], 'safe'],
-            [['fbase_price', 'fprice1', 'fprice2'], 'number'],
-            [['cname', 'cadress'], 'string', 'max' => 255],
+            [['fbase_price'], 'number'],
+            [['cname', 'cadress', 'cbase_text', 'ctext_condition1', 'ctext_condition2'], 'string', 'max' => 255],
         ];
     }
 
@@ -59,10 +57,11 @@ class EFEvents extends \yii\db\ActiveRecord {
             'icity_id' => 'Город',
             'cadress' => 'Адрес',
             'fbase_price' => 'Базовая стоимость',
-            'fprice1' => '1 скидочная цена',
-            'fprice2' => '2 скидочная цена',
             'dprice1_date' => 'Дата первой скидочной цены',
             'dprice2_date' => 'Дата второй скидочной цены',
+            'cbase_text' => 'Базовый текст до условий',
+            'ctext_condition1'=> 'Текст при наступлении первого условия', 
+            'ctext_condition2'=> 'Текст при наступлении второго условия'
         ];
     }
 

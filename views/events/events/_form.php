@@ -36,9 +36,11 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'fbase_price')->textInput() ?>
 
-    <?= $form->field($model, 'fprice1')->textInput() ?>
+    <?= $form->field($model, 'cbase_text')->textInput() ?>
 
-    <?= $form->field($model, 'fprice2')->textInput() ?>
+    <?= $form->field($model, 'ctext_condition1')->textInput() ?>
+    
+    <?= $form->field($model, 'ctext_condition2')->textInput() ?>
 
     <?=
     $form->field($model, 'dprice1_date')->widget(\yii\jui\DatePicker::class, [

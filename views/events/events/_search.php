@@ -36,11 +36,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'cadress') ?>
 
-    <?php // echo $form->field($model, 'fbase_price') ?>
-
-    <?php // echo $form->field($model, 'fprice1') ?>
-
-    <?php // echo $form->field($model, 'fprice2') ?>
+    <?php // echo $form->field($model, 'fbase_price') ?>    
 
     <?php // echo $form->field($model, 'dprice1_date') ?>
 

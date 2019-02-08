@@ -19,8 +19,8 @@ class EFEventsSearch extends EFEvents
     {
         return [
             [['iid', 'itype_id', 'bopened', 'imin', 'imax', 'icity_id'], 'integer'],
-            [['cname', 'ddate_event', 'cadress', 'dprice1_date', 'dprice2_date'], 'safe'],
-            [['fbase_price', 'fprice1', 'fprice2'], 'number'],
+            [['cname', 'ddate_event', 'cadress', 'dprice1_date', 'dprice2_date', 'cbase_text', 'ctext_condition1', 'ctext_condition2'], 'safe'],
+            [['fbase_price',], 'number'],
         ];
     }
 
@@ -68,8 +68,6 @@ class EFEventsSearch extends EFEvents
             'ddate_event' => $this->ddate_event,
             'icity_id' => $this->icity_id,
             'fbase_price' => $this->fbase_price,
-            'fprice1' => $this->fprice1,
-            'fprice2' => $this->fprice2,
             'dprice1_date' => $this->dprice1_date,
             'dprice2_date' => $this->dprice2_date,
         ]);

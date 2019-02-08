@@ -58,8 +58,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'cadress',
             //'fbase_price',
-            //'fprice1',
-            //'fprice2',
             //'dprice1_date',
             //'dprice2_date',
             ['class' => 'yii\grid\ActionColumn'],

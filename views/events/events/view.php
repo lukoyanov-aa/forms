@@ -54,11 +54,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ],            
             //'icity_id',
             'cadress',
-            'fbase_price',
-            'fprice1',
-            'fprice2',
+            'fbase_price',            
             'dprice1_date',
             'dprice2_date',
+            'cbase_text', 
+            'ctext_condition1', 
+            'ctext_condition2'            
         ],
     ])
     ?>
