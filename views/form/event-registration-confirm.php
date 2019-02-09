@@ -9,8 +9,8 @@ $yametrika = <<<JS
         (function (d, w, c) {
         (w[c] = w[c] || []).push(function() {
             try {
-                w.yaCounter51320992 = new Ya.Metrika2({
-                    id:51320992,
+                w.yaCounter$formSettings->iya_counter_id = new Ya.Metrika2({
+                    id:$formSettings->iya_counter_id,
                     clickmap:true,
                     trackLinks:true,
                     accurateTrackBounce:true,
@@ -30,16 +30,11 @@ $yametrika = <<<JS
             d.addEventListener("DOMContentLoaded", f, false);
         } else { f(); }
     })(document, window, "yandex_metrika_callbacks2");
-JS;
-$this->registerJs($yametrika);
-if ($contactId) {
-    $yametrika_target = <<<JS
         window.onload = function() {
             yaCounter$formSettings->iya_counter_id.reachGoal('$formSettings->cya_metrika_target', {'$model->url': {target: '$model->target'}});
         }
 JS;
-}
-$this->registerJs($yametrika_target);
+$this->registerJs($yametrika);
 ?>
 
 <section class="bg-light u-content-space">
