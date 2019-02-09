@@ -62,7 +62,7 @@ $this->registerJs($yametrika);
                 <div class="row block-zamer">
                     <div class="col-md-8 col-xs-8">
                         <a class="h5" href="https://www.youtube.com/channel/UCADHydG-5zaCW288q1lD9fw" target="_blank">Посетите наш канал на YouTube</a>
-                        <p class="">Вы увидите как проходили мастер-классы, а ткаже результаты нашего творчества!</p>
+                        <p class="">Вы увидите, как проходили мастер-классы, а также результаты нашего творчества!</p>
                     </div>
                     <div class="col-md-4 col-xs-4">
                         <img class="" src="https://files.annaholod.ru/img/ico-instagram.jpg" alt="Иконка YouTube">
