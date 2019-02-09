@@ -50,6 +50,8 @@ class EventRegistration extends BaseForm {
             return EFEvents::find()->where(['itype_id' => $event_type, 'bopened' => 1])->all();
         } elseif ($event) {
             return EFEvents::find()->where(['iid' => $event, 'bopened' => 1])->all();
+        }else{
+            return EFEvents::find()->where(['bopened' => 1])->all();
         }
     }
     
