@@ -14,16 +14,16 @@ class FormController extends B24Controller {
         $this->enableCsrfValidation = false;
         return parent::beforeAction($action);
     }
-    
+
     public function actionEventRegistration() { //доделать
         $request = Yii::$app->request;
-        $model = new EventRegistration();        
+        $model = new EventRegistration();
         if ($model->load($request->post()) && $model->validate()) {
             $actionName = Yii::$app->controller->action->id;
             $formSettings = FForms::find()->where(['cname' => $actionName])->one();
             $component = new \app\components\b24Tools();
             $this->arB24App = $component->connect($this->moduleParams['applicationId'], $this->moduleParams['applicationSecret'], $this->moduleParams['b24PortalTable'], $this->moduleParams['b24PortalName'], $this->moduleParams['applicationScope']);
-            $lied = $model->addLied($this->arB24App, $formSettings);            
+            $lied = $model->addLied($this->arB24App, $formSettings);
             if (!$lied) {
                 Yii::error('создать Лид не удалось', __METHOD__);
                 Yii::warning($model, __METHOD__);
@@ -40,10 +40,17 @@ class FormController extends B24Controller {
                 $model->utm_content = $request->get('utm_content');
 
                 $model->event_type = $request->get('et') ? $request->get('et') : '';
-                $model->event = $request->get('e') ? $request->get('e') : '';                                
-            }            
+                $model->event = $request->get('e') ? $request->get('e') : '';
+            }
             $events = $model->getEvents($model->event_type, $model->event);
+//            if (count($events) == 0) {
+//                
+//                $events = [0 => 'Пока не запланированы семинары, но всё может измениться сразу после Вашего обращения'];
+//            }
+            
+            Yii::warning($events);
             return $this->render('event-registration', compact('model', 'events'));
         }
     }
+
 }
