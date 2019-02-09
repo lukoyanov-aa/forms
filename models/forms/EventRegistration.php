@@ -34,8 +34,8 @@ class EventRegistration extends BaseForm {
         return array_merge(parent::rules(), [[['event_id', 'event', 'event_type'], 'string']]);
     }
 
-    public function addLied($obB24App, $actionName) {
-        $lied = parent::addLied($obB24App, $actionName, $this->liedFields, $emailSend);
+    public function addLied($obB24App, $formSettings) {
+        $lied = parent::addLied($obB24App, $formSettings, $this->liedFields, $emailSend);
         return($lied);
     }
 

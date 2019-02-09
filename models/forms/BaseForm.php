@@ -4,7 +4,7 @@ namespace app\modules\forms\models\forms;
 
 use app\modules\forms\models\settings\FTargetUrl;
 use app\modules\forms\models\turn\TFGroupsManagersSearch;
-use app\modules\forms\models\settings\FForms;
+//use app\modules\forms\models\settings\FForms;
 use Yii;
 
 class BaseForm extends \yii\base\Model {
@@ -31,9 +31,9 @@ class BaseForm extends \yii\base\Model {
     }
 
     //public function addLied($obB24App = null, $managerId = 0, $sourceId = array(), $title = '', $liedFields = array()) {
-    public function addLied($obB24App, $actionName, $liedFields = array()) {
+    public function addLied($obB24App, $formSettings, $liedFields = array()) {
 
-        $formSettings = FForms::find()->where(['cname' => $actionName])->one();
+        //$formSettings = FForms::find()->where(['cname' => $actionName])->one();
         $managerId = TFGroupsManagersSearch::getNextManager($formSettings->igroup_id);
         $arrTargetUrl = FTargetUrl::find()->where(['ctarget_url' => $this->target . '_' . $this->url])->one();
         $nameText = $this->nameText;
