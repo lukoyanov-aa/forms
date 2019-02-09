@@ -49,8 +49,8 @@ $this->registerCssFile($assetsUrl->baseUrl . '/css/event-registration.css');
                         ?>                    
                     </div>
                     <div class="stock-block col-md-6">
-                        <p class="stock-text1">И получить скидку 10%</p>
-                        <p class="stock-text2">только до 1 марта!</p>
+                        <p class="stock-text1">Успейте записаться,</p>
+                        <p class="stock-text2">места ограниченны</p>
                     </div>
                 </div>
 
