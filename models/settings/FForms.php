@@ -32,7 +32,7 @@ class FForms extends \yii\db\ActiveRecord
         return [
             [['cname', 'igroup_id', 'iya_counter_id', 'cya_metrika_target'], 'required'],
             [['igroup_id', 'iya_counter_id'], 'integer'],
-            [['cname', 'cya_metrika_target', 'ctarget_url'], 'string', 'max' => 255],
+            [['cname', 'cya_metrika_target'], 'string', 'max' => 255],
         ];
     }
 
