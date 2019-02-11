@@ -6,6 +6,17 @@ use yii\widgets\MaskedInput;
 use app\modules\forms\assets\formsAsset;
 use yii\helpers\ArrayHelper;
 $assetsUrl = formsAsset::register($this);
+
+$js = <<<JS
+        $('#w0').on('beforeSubmit', function () {
+            // Вызывается после удачной валидации всех полей и до того как форма отправляется на северер.
+            // Тут можно отправить форму через AJAX. Не забудьте вернуть false для того, чтобы форма не отправлялась как обычно.
+        $(":submit").prop('disabled', true); 
+        return true
+        });
+JS;
+$this->registerJs($js);
+
 $this->registerCssFile($assetsUrl->baseUrl . '/css/event-registration.css');
 ?>
 
