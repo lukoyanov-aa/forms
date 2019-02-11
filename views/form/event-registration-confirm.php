@@ -56,7 +56,9 @@ $this->registerJs($yametrika);
                         <p class="">Вы увидите много выполненных работ, а также сможете почитать отзывы наших учеников :)</p>
                     </div>
                     <div class="col-md-4 col-xs-4">
-                        <img class="" src="https://files.annaholod.ru/img/ico-youtube.jpg" alt="Иконка инстаграм">
+                      <a href="https://www.instagram.com/anna_holod_school/" target="_blank">
+                        <img class="" src="https://files.annaholod.ru/img/ico-instagram.jpg" alt="Иконка инстаграм">
+                      </a>
                     </div>
                 </div>
                 <div class="row block-zamer">
@@ -65,7 +67,9 @@ $this->registerJs($yametrika);
                         <p class="">Вы увидите, как проходили мастер-классы, а также результаты нашего творчества!</p>
                     </div>
                     <div class="col-md-4 col-xs-4">
-                        <img class="" src="https://files.annaholod.ru/img/ico-instagram.jpg" alt="Иконка YouTube">
+                      <a href="https://www.youtube.com/channel/UCADHydG-5zaCW288q1lD9fw" target="_blank">
+                        <img class="" src="https://files.annaholod.ru/img/ico-youtube.jpg" alt="Иконка YouTube">
+                      </a>
                     </div>
                 </div>
             </div>
