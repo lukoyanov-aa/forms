@@ -4,8 +4,7 @@ namespace app\modules\forms\controllers;
 
 use Yii;
 use \yii\web\HttpException;
-use app\modules\forms\models\forms\EventRegistration;
-use app\modules\forms\models\events\EFEventsSearch;
+use app\modules\forms\models\forms\TestModel;
 use app\modules\forms\models\settings\FForms;
 
 class FormController extends B24Controller {
@@ -15,9 +14,9 @@ class FormController extends B24Controller {
         return parent::beforeAction($action);
     }
 
-    public function actionEventRegistration() { //доделать
+    public function actionTest() { //доделать
         $request = Yii::$app->request;
-        $model = new EventRegistration();
+        $model = new TestModel();
         if ($model->load($request->post()) && $model->validate()) {
             $actionName = Yii::$app->controller->action->id;
             $formSettings = FForms::find()->where(['cname' => $actionName])->one();
@@ -28,28 +27,18 @@ class FormController extends B24Controller {
                 Yii::error('создать Лид не удалось', __METHOD__);
                 Yii::warning($model, __METHOD__);
             }
-            return $this->render('event-registration-confirm', compact('model', 'formSettings'));
+            return $this->render('test-confirm', compact('model', 'formSettings'));
         } else {
             if ($request->post('action') != 'submit') {
-                $model->url = $request->get('u') ? $request->get('u') : 'seminar';
-                $model->target = $request->get('t') ? $request->get('t') : 'form';
+                $model->url = $request->get('u') ? $request->get('u') : 'utest';
+                $model->target = $request->get('t') ? $request->get('t') : 'ttest';
                 $model->utm_source = $request->get('utm_source');
                 $model->utm_medium = $request->get('utm_medium');
                 $model->utm_campaign = $request->get('utm_campaign');
                 $model->utm_term = $request->get('utm_term');
                 $model->utm_content = $request->get('utm_content');
-
-                $model->event_type = $request->get('et') ? $request->get('et') : '';
-                $model->event = $request->get('e') ? $request->get('e') : '';
             }
-            $events = $model->getEvents($model->event_type, $model->event);
-//            if (count($events) == 0) {
-//                
-//                $events = [0 => 'Пока не запланированы семинары, но всё может измениться сразу после Вашего обращения'];
-//            }
-            
-            Yii::warning($events);
-            return $this->render('event-registration', compact('model', 'events'));
+            return $this->render('test', compact('model'));
         }
     }
 
