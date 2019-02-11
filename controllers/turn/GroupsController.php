@@ -6,14 +6,14 @@ use Yii;
 use app\modules\forms\models\turn\TFGroups;
 use app\modules\forms\models\turn\TFGroupsSearch;
 //use app\modules\forms\controllers\TurnController;
-use app\modules\forms\controllers\admin\B24AdminSecondController;
+use app\modules\forms\controllers\AdminSecondController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * GroupsController implements the CRUD actions for TFGroups model.
  */
-class GroupsController extends B24AdminSecondController
+class GroupsController extends AdminSecondController
 {
     /**
      * {@inheritdoc}

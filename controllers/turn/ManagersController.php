@@ -6,7 +6,7 @@ use Yii;
 use app\modules\forms\models\turn\TFManagers;
 use app\modules\forms\models\turn\TFManagersSearch;
 //use app\modules\forms\controllers\TurnController;
-use app\modules\forms\controllers\admin\B24AdminSecondController;
+use app\modules\forms\controllers\AdminSecondController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
@@ -14,7 +14,7 @@ use yii\data\ActiveDataProvider;
 /**
  * ManagersController implements the CRUD actions for TFManagers model.
  */
-class ManagersController extends B24AdminSecondController {
+class ManagersController extends AdminSecondController {
 
     /**
      * {@inheritdoc}

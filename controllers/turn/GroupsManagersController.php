@@ -7,14 +7,14 @@ use app\modules\forms\models\turn\TFGroupsManagers;
 use app\modules\forms\models\turn\TFGroupsManagersSearch;
 use app\modules\forms\models\turn\TFGroups;
 use app\modules\forms\models\turn\TFManagers;
-use app\modules\forms\controllers\admin\B24AdminSecondController;
+use app\modules\forms\controllers\AdminSecondController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * GroupsManagersController implements the CRUD actions for TFGroupsManagers model.
  */
-class GroupsManagersController extends B24AdminSecondController {
+class GroupsManagersController extends AdminSecondController {
 
     /**
      * {@inheritdoc}

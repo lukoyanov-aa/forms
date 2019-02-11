@@ -5,7 +5,7 @@ namespace app\modules\forms\controllers\settings;
 use Yii;
 use app\modules\forms\models\settings\FForms;
 use app\modules\forms\models\settings\FFormsSearch;
-use app\modules\forms\controllers\admin\B24AdminSecondController;
+use app\modules\forms\controllers\AdminSecondController;
 use app\modules\forms\models\turn\TFGroups;
 use app\modules\forms\models\settings\FTargetUrl;
 use yii\web\NotFoundHttpException;
@@ -14,7 +14,7 @@ use yii\filters\VerbFilter;
 /**
  * FormsSettingsController implements the CRUD actions for FForms model.
  */
-class FormsController extends B24AdminSecondController
+class FormsController extends AdminSecondController
 {
     /**
      * {@inheritdoc}

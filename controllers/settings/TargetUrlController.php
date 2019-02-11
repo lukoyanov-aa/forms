@@ -5,14 +5,14 @@ namespace app\modules\forms\controllers\settings;
 use Yii;
 use app\modules\forms\models\settings\FTargetUrl;
 use app\modules\forms\models\settings\FTargetUrlSearch;
-use app\modules\forms\controllers\admin\B24AdminSecondController;
+use app\modules\forms\controllers\AdminSecondController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * TargetUrlController implements the CRUD actions for FTargetUrl model.
  */
-class TargetUrlController extends B24AdminSecondController
+class TargetUrlController extends AdminSecondController
 { 
     /**
      * {@inheritdoc}

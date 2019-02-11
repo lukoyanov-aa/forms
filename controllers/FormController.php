@@ -7,7 +7,7 @@ use \yii\web\HttpException;
 use app\modules\forms\models\forms\TestModel;
 use app\modules\forms\models\settings\FForms;
 
-class FormController extends B24Controller {
+class FormController extends \app\modules\b24\controllers\B24Controller {
 
     public function beforeAction($action) {
         $this->enableCsrfValidation = false;
