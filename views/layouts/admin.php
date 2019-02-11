@@ -34,16 +34,7 @@ AppAsset::register($this);
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
-//            echo Nav::widget([
-//                'options' => ['class' => 'navbar-nav navbar-right'],
-//                'items' => [
-//                    ['label' => 'Домой', 'url' => ['admin/admin-base/index']],
-//                    ['label' => 'Распределение', 'url' => ['turn/index']],
-//                    ['label' => 'События', 'url' => ['events/index']],
-//                    ['label' => 'Настройки', 'url' => ['settings/index']],
-//                    ['label' => 'Contact', 'url' => ['/site/contact']],
-//                ],
-//            ]);
+
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
@@ -67,29 +58,9 @@ AppAsset::register($this);
                         'items' => [
                             ['label' => 'Источники', 'url' => '/web/forms/settings/target-url/index'],
                             ['label' => 'Формы', 'url' => '/web/forms/settings/forms/index'],
-//                            '<li class="divider"></li>',
-//                            '<li class="dropdown-header">Dropdown Header</li>',
-//                            ['label' => 'Level 1 - Dropdown B', 'url' => '#'],
                         ],
-                    ],
-                    [
-                        'label' => 'События',
-                        'items' => [
-                            ['label' => 'Города', 'url' => '/web/forms/events/city/index'],
-                            ['label' => 'Типы событий', 'url' => '/web/forms/events/events-type/index'],
-                            ['label' => 'События', 'url' => '/web/forms/events/events/index'],
-//                            '<li class="divider"></li>',
-//                            '<li class="dropdown-header">Dropdown Header</li>',
-//                            ['label' => 'Level 1 - Dropdown B', 'url' => '#'],
-                        ],
-                    ],
-//                    [
-//                        'label' => 'Login',
-//                        'url' => ['site/login'],
-//                        'visible' => Yii::$app->user->isGuest
-//                    ],
+                    ],                    
                 ],
-                //'options' => ['class' => 'nav-pills'], // set this to nav-tab to get tab-styled navigation
             ]);
             NavBar::end();
             ?>
