@@ -38,7 +38,7 @@ class BaseForm extends \yii\base\Model {
         $arrTargetUrl = FTargetUrl::find()->where(['ctarget_url' => $this->target . '_' . $this->url])->one();
         $nameText = $this->nameText;
         $phoneArray = $this->phoneArray;
-        $titleText = $this->parsTitleText($arrTargetUrl->ctitle);
+        $titleText = $this->parsTitleText($arrTargetUrl->cname, $this->phone);
         $commentsText = $this->generateCommentsText();
         $baseFieldsArray = [
             "TITLE" => $titleText,
@@ -89,18 +89,23 @@ class BaseForm extends \yii\base\Model {
         return $phoneArray;
     }
 
-    protected function parsTitleText($title = '') {
+    protected function parsTitleText($title = '', $phone = '') {
         $name = '';
         if ($this->name) {
             $name = $this->name;
         } else {
             $name = self::NAME_EMPTY;
         }
-        if ($title) {
-            return $name . ' ' . $title;
+        
+        $text = '';
+        if ($phone) {
+            $text = $name . ' ' . $phone . ' ';
         } else {
-            return $name . ' ' . self::TITLE_EMPTY;
-        }
+            $text = $name . ' ';
+        }        
+
+            return $text . ' ' . self::TITLE_EMPTY;
+        
     }
 
     protected function getPhoneText() {
