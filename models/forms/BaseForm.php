@@ -134,6 +134,7 @@ class BaseForm extends \yii\base\Model {
     protected function generateEmailBodyText($fields) {
         $text = 'Имя: ' . $this->nameText. '<br>';
         $text .= 'Телефон: ' . $this->phoneText. '<br>';
+        $text .= 'Страница: ' . $this->targetUrl->cname. '<br>';
         $text .= $this->parsFieldsToText($fields);
         return $text;
     }
