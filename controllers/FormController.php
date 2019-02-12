@@ -48,7 +48,6 @@ class FormController extends B24Controller {
 //                $events = [0 => 'Пока не запланированы семинары, но всё может измениться сразу после Вашего обращения'];
 //            }
             
-            Yii::warning($events);
             return $this->render('event-registration', compact('model', 'events'));
         }
     }
