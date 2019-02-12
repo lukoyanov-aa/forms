@@ -18,7 +18,7 @@ echo Tabs::widget([
         ],
         [
             'label' => 'Группы',
-            'content' =>  $this->render('_manager_groups_view', ['groupsDataProvider' => $groupsDataProvider]),
+            'content' =>  $this->render('_manager_groups_view', ['groupsDataProvider' => $groupsDataProvider], 'model' => $model),
         ],
     ]
 ]);
