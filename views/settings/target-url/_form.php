@@ -19,7 +19,10 @@ use yii\helpers\ArrayHelper;
     
     <?= $form->field($model, 'csource_id')->dropDownList(ArrayHelper::map($sources['result'], 'STATUS_ID', 'NAME')) ?>    
 
-    <?= $form->field($model, 'ctarget_url')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'ctarget_url')->textInput(['maxlength' => true]) ?>    
+        
+    <?= $form->field($model, 'cmail')->textInput(['maxlength' => true]) ?>
+
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

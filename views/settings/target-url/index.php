@@ -30,7 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'cname',
             'ctitle',
             'csource_id',
-            'ctarget_url:url',
+            'ctarget_url',
+            'cmail',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

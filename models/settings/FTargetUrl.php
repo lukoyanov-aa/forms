@@ -28,7 +28,7 @@ class FTargetUrl extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['cname', 'ctitle', 'csource_id', 'ctarget_url'], 'required'],
-            [['cname', 'ctitle', 'ctarget_url', 'csource_id',], 'string', 'max' => 255],
+            [['cname', 'ctitle', 'ctarget_url', 'csource_id', 'cmail'], 'string', 'max' => 255],
             [['ctarget_url'], 'unique'],
         ];
     }
@@ -43,6 +43,7 @@ class FTargetUrl extends \yii\db\ActiveRecord {
             'ctitle' => 'Источник',
             'csource_id' => 'ID источника в Б24',
             'ctarget_url' => 'Target_Url',
+            'cmail' => 'Кому отправить'
         ];
     }
 

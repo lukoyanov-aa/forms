@@ -35,7 +35,8 @@ class BaseForm extends \yii\base\Model {
 
         //$formSettings = FForms::find()->where(['cname' => $actionName])->one();
         $managerId = TFGroupsManagersSearch::getNextManager($formSettings->igroup_id);
-        $arrTargetUrl = FTargetUrl::find()->where(['ctarget_url' => $this->target . '_' . $this->url])->one();
+        $arrTargetUrl = $this->targetUrl;
+        Yii::warning($arrTargetUrl);
         $nameText = $this->nameText;
         $phoneArray = $this->phoneArray;
         $titleText = $this->parsTitleText($arrTargetUrl->cname, $this->phone);
@@ -55,10 +56,10 @@ class BaseForm extends \yii\base\Model {
         ];
 
         $liedFieldsArray = array_merge($baseFieldsArray, $liedFields);
-        if (true) {
+        if ($arrTargetUrl->cmail) {
             Yii::$app->mailer->compose()
-                    ->setFrom('info@annaholod.ru')
-                    ->setTo('info@annaholod.ru')
+                    ->setFrom('shulkinlm@yandex.ru')
+                    ->setTo($arrTargetUrl->cmail)
                     ->setSubject($titleText)
                     ->setTextBody('Текст сообщения')
                     ->setHtmlBody($this->generateEmailBodyText($liedFields))
@@ -67,6 +68,15 @@ class BaseForm extends \yii\base\Model {
         $obB24Lied = new \Bitrix24\CRM\Lead($obB24App);
         $lied = $obB24Lied->add($liedFieldsArray);
         return $lied;
+    }
+        
+    public function getTargetUrl() {
+        if(FTargetUrl::find()->where(['ctarget_url' => $this->target . '_' . $this->url])->count()){
+            return FTargetUrl::find()->where(['ctarget_url' => $this->target . '_' . $this->url])->one();;
+        }else{
+            return FTargetUrl::find()->where(['ctarget_url' => 'default'])->one();;
+        }
+        
     }
 
     protected function generateCommentsText() {
@@ -127,5 +137,8 @@ class BaseForm extends \yii\base\Model {
         $text .= $this->parsFieldsToText($fields);
         return $text;
     }
-
+    
+    protected function getLiedFields() {
+        return [];
+    }
 }
