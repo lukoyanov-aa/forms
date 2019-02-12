@@ -65,7 +65,10 @@ class TFGroupsManagers extends \yii\db\ActiveRecord
                     ->one();
             $manager->iturn_id = $managerMax->iturn_id + 1;
             $manager->save();
-            return $manager->imanagers_id;
+            $manager_ = TFManagers::find()
+                    ->where(['iid' => $manager->imanagers_id])
+                    ->one();
+            return $manager_->ib24_user_id;
         }else{
             return 0;
         }
