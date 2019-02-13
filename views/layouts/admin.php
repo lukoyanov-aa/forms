@@ -40,7 +40,7 @@ AppAsset::register($this);
                 'items' => [
                     [
                         'label' => 'Домой',
-                        'url' => ['/web/forms/admin/admin-base/index'],                        
+                        'url' => ['/web/forms/admin-base/index'],                        
                     ],
                     [
                         'label' => 'Распределение',
