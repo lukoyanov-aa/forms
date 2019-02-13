@@ -35,8 +35,7 @@ class BaseForm extends \yii\base\Model {
 
         //$formSettings = FForms::find()->where(['cname' => $actionName])->one();
         $managerId = TFGroupsManagersSearch::getNextManager($formSettings->igroup_id);
-        $arrTargetUrl = $this->targetUrl;
-        Yii::warning($arrTargetUrl);
+        $arrTargetUrl = $this->targetUrl;        
         $nameText = $this->nameText;
         $phoneArray = $this->phoneArray;
         $titleText = $this->parsTitleText($arrTargetUrl->cname, $this->phone);
@@ -58,7 +57,7 @@ class BaseForm extends \yii\base\Model {
         $liedFieldsArray = array_merge($baseFieldsArray, $liedFields);
         if ($arrTargetUrl->cmail) {
             Yii::$app->mailer->compose()
-                    ->setFrom('shulkinlm@yandex.ru')
+                    ->setFrom('shulkinlm@yandex.ru')//Доделать
                     ->setTo($arrTargetUrl->cmail)
                     ->setSubject($titleText)
                     ->setTextBody('Текст сообщения')
