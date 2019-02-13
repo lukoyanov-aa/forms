@@ -4,10 +4,10 @@ return [
         // список конфигураций компонентов
     ],
     'params' => [
-        'applicationId' => 'local.5c6191a3e494f7.67285386',
-        'applicationSecret' => 'sjXANKXqRdaPTgslxN7UUKhanLV9zo1MDNd3bU6evw6ihx4F0Y', 
+        'applicationId' => 'local.5c6425a826fcc2.87091174',
+        'applicationSecret' => 'XRmkEt0jHzjByztJl022miCTVzUFrY8zAJWflPEiO48p6EWX8S', 
         'applicationScope' => ['user', 'crm'],
-        'applicationName' => ['forms1'],
+        'applicationName' => ['forms'],
         'b24PortalTable' => 'b24portal',
         'b24PortalName' => 'o-mir.bitrix24.ru'
     ],

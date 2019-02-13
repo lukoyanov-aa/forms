@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Url;
-$url = Url::toRoute(['admin/add-portal-auth']);
+$url = Url::toRoute(['admin-base/add-portal-auth']);
 //echo
 
 $js = <<<JS
