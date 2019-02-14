@@ -19,7 +19,7 @@ class FTargetUrl extends \yii\db\ActiveRecord {
      * {@inheritdoc}
      */
     public static function tableName() {
-        return 'f_target_url';
+        return 'forms_target_url';
     }
 
     /**
