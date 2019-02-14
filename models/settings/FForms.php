@@ -21,7 +21,7 @@ class FForms extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'f_forms';
+        return 'forms_forms';
     }
 
     /**
