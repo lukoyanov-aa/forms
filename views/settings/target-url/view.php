@@ -7,6 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\modules\forms\models\b24\FTargetUrl */
 
 $this->title = $model->ctarget_url;
+$this->params['breadcrumbs'][] = ['label' => 'Настройки'];
 $this->params['breadcrumbs'][] = ['label' => 'Источники', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

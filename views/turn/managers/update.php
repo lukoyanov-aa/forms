@@ -6,6 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\modules\forms\models\turn\TFManagers */
 
 $this->title = 'Изменение менеджера: ' . $model->cname;
+$this->params['breadcrumbs'][] = 'Распределение';
 $this->params['breadcrumbs'][] = ['label' => 'Менеджеры', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->cname, 'url' => ['view', 'id' => $model->iid]];
 $this->params['breadcrumbs'][] = 'Изменение';

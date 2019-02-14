@@ -7,6 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\modules\forms\models\turn\TFGroups */
 
 $this->title = 'Добавление группы';
+$this->params['breadcrumbs'][] = 'Распределение';
 $this->params['breadcrumbs'][] = ['label' => 'Добавление группы', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

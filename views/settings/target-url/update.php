@@ -6,6 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\modules\forms\models\b24\FTargetUrl */
 
 $this->title = 'Изменение источника: ' . $model->ctarget_url;
+$this->params['breadcrumbs'][] = ['label' => 'Настройки'];
 $this->params['breadcrumbs'][] = ['label' => 'Источники', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->ctarget_url, 'url' => ['view', 'id' => $model->iid]];
 $this->params['breadcrumbs'][] = 'Изменение';

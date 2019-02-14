@@ -8,6 +8,7 @@ use yii\widgets\Pjax;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Источники';
+$this->params['breadcrumbs'][] = ['label' => 'Настройки'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ftarget-url-index">

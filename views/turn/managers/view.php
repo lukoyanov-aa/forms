@@ -4,6 +4,7 @@ use yii\bootstrap\Tabs;
 //use yii\grid\GridView;
 //use yii\helpers\Html;
 $this->title = $model->cname;
+$this->params['breadcrumbs'][] = 'Распределение';
 $this->params['breadcrumbs'][] = ['label' => 'Менеджеры', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
