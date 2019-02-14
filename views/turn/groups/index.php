@@ -7,7 +7,8 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\modules\forms\models\turn\TFGroupsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Tfgroups';
+$this->title = 'Группы';
+$this->params['breadcrumbs'][] = 'Распределение';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tfgroups-index">
@@ -17,14 +18,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Tfgroups', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить группу', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
 
             'iid',
             'cname',
