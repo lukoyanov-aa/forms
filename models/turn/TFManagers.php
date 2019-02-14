@@ -17,7 +17,7 @@ class TFManagers extends \yii\db\ActiveRecord {
      * {@inheritdoc}
      */
     public static function tableName() {
-        return 'forms_turn_managers';
+        return 'tf_managers';
     }
 
     /**

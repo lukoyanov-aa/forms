@@ -18,7 +18,7 @@ class TFGroupsManagers extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'forms_turn_groups_managers';
+        return 'tf_groups_managers';
     }
 
     /**
