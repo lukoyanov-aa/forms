@@ -71,13 +71,14 @@ class ManagersController extends AdminSecondController {
 
         $session = Yii::$app->session;
         $AccessParams = $session->get('AccessParams');
+        Yii::warning($AccessParams);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->iid]);
         }
 
         $component = new \app\components\b24Tools();
-        $b24App = $component->connect($this->moduleParams['applicationId'], $this->moduleParams['applicationSecret'], null, null, $this->moduleParams['applicationScope'], $AccessParams);
+        $b24App = $component->connect($this->moduleParams['applicationId'], $this->moduleParams['applicationSecret'], $this->moduleParams['b24PortalTable'], null, $this->moduleParams['applicationScope'], $AccessParams);
         $obB24Users = new \Bitrix24\User\User($b24App);
         $b24users = $obB24Users->get('ID', '', ['ACTIVE' => true]);
         $usersList = $this->usersList($b24users);
@@ -106,7 +107,7 @@ class ManagersController extends AdminSecondController {
         }
 
         $component = new \app\components\b24Tools();
-        $b24App = $component->connect($this->moduleParams['applicationId'], $this->moduleParams['applicationSecret'], null, null, $this->moduleParams['applicationScope'], $AccessParams);
+        $b24App = $component->connect($this->moduleParams['applicationId'], $this->moduleParams['applicationSecret'], $this->moduleParams['b24PortalTable'], null, $this->moduleParams['applicationScope'], $AccessParams);
         $obB24Users = new \Bitrix24\User\User($b24App);
         $b24users = $obB24Users->get('ID', '', ['ACTIVE' => true]);
         $usersList = $this->usersList($b24users);

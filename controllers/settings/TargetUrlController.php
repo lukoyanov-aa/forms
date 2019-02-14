@@ -73,7 +73,7 @@ class TargetUrlController extends AdminSecondController
         }
         
         $component = new \app\components\b24Tools();
-        $b24App = $component->connect($this->moduleParams['applicationId'], $this->moduleParams['applicationSecret'], null, null, $this->moduleParams['applicationScope'], $AccessParams);
+        $b24App = $component->connect($this->moduleParams['applicationId'], $this->moduleParams['applicationSecret'], $this->moduleParams['b24PortalTable'], null, $this->moduleParams['applicationScope'], $AccessParams);
         $obB24Sources = new \Bitrix24\CRM\Status($b24App);
                 //User\User($b24App);
         $b24sources = $obB24Sources->entityItems('SOURCE');
@@ -105,7 +105,7 @@ class TargetUrlController extends AdminSecondController
         }
         
         $component = new \app\components\b24Tools();
-        $b24App = $component->connect($this->moduleParams['applicationId'], $this->moduleParams['applicationSecret'], null, null, $this->moduleParams['applicationScope'], $AccessParams);
+        $b24App = $component->connect($this->moduleParams['applicationId'], $this->moduleParams['applicationSecret'], $this->moduleParams['b24PortalTable'], null, $this->moduleParams['applicationScope'], $AccessParams);
         $obB24Sources = new \Bitrix24\CRM\Status($b24App);               
         $b24sources = $obB24Sources->entityItems('SOURCE');
 
