@@ -27,21 +27,23 @@ AppAsset::register($this);
 
         <div class="wrap">
             <?php
-            NavBar::begin([
-                'brandLabel' => Yii::$app->name,
-                'brandUrl' => Yii::$app->homeUrl,
+            NavBar::begin(
+                    [
+                'brandLabel' => 'Webmens forms',
+                'brandUrl' => '/web/forms/admin-base/index',
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
-            ]);
+            ]
+            );
 
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
-                    [
-                        'label' => 'Домой',
-                        'url' => ['/web/forms/admin-base/index'],                        
-                    ],
+//                    [
+//                        'label' => 'Домой',
+//                        'url' => ['/forms/admin-base/index'],                        
+//                    ],
                     [
                         'label' => 'Распределение',
                         'items' => [
@@ -68,6 +70,7 @@ AppAsset::register($this);
             <div class="container">
                 <?=
                 Breadcrumbs::widget([
+                    'homeLink' => ['label' => 'Приложение', 'url' => ['/forms/admin-base/index']],
                     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                 ])
                 ?>
