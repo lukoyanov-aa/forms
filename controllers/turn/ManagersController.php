@@ -71,8 +71,6 @@ class ManagersController extends AdminSecondController {
 
         $session = Yii::$app->session;
         $AccessParams = $session->get('AccessParams');
-        Yii::warning($AccessParams);
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->iid]);
         }
