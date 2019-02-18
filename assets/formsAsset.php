@@ -18,12 +18,11 @@ use yii\web\AssetBundle;
 class formsAsset extends AssetBundle
 {
     //public $basePath = '@webroot';
-    //public $baseUrl = '@web';
+    public $baseUrl = '@web';
     //public $sourcePath = '@webAsset';
     // путь к директории, содержимое которой надо опубликовать
     public $sourcePath = '@app/modules/forms/assets/web/';
     public $css = [
-        //'css/site.css',
         'https://fonts.googleapis.com/css?family=Roboto:400,500,700',
     ];
     public $js = [        
