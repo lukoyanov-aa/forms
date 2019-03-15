@@ -1,9 +1,9 @@
 <?php
 
 use yii\helpers\Html;
-use app\modules\forms\assets\formsAsset;
+use app\modules\forms\assets\ModuleAsset;
 
-$assetsUrl = formsAsset::register($this);
+$assetsUrl = ModuleAsset::register($this);
 $this->registerCssFile($assetsUrl->baseUrl . '/css/confirm-event-registration.css');
 $yametrika = <<<JS
         (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};

@@ -5,9 +5,9 @@
 
 use app\widgets\Alert;
 use yii\helpers\Html;
-use app\modules\forms\assets\formsAsset;
+use app\modules\forms\assets\ModuleAsset;
 
-formsAsset::register($this);
+ModuleAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

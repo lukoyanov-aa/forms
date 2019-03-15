@@ -8,9 +8,9 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
-use app\modules\forms\assets\formsAsset;
+use app\modules\forms\assets\ModuleAsset;
 
-$assetsUrl = formsAsset::register($this);
+$assetsUrl = ModuleAsset::register($this);
 
 AppAsset::register($this);
 //$this->registerCssFile($assetsUrl->baseUrl . '/js/application.js');

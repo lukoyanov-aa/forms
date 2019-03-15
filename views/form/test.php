@@ -3,9 +3,9 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\MaskedInput;
-use app\modules\forms\assets\formsAsset;
+use app\modules\forms\assets\ModuleAsset;
 use yii\helpers\ArrayHelper;
-$assetsUrl = formsAsset::register($this);
+$assetsUrl = ModuleAsset::register($this);
 //$this->registerCssFile($assetsUrl->baseUrl . '/css/event-registration.css');
 
 $js = <<<JS
