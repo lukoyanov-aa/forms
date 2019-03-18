@@ -20,7 +20,7 @@ $script = <<< JS
     $(document).ready(function () {		 
         BX24.init(function(){                        
                 app.saveFrameWidth();
-
+                app.resizeFrame();
         });        
     });    
 JS;
