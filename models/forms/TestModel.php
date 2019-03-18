@@ -27,7 +27,7 @@ class TestModel extends BaseForm {
     }
 
     public function addLied($obB24App, $formSettings) {
-        $lied = parent::addLied($obB24App, $formSettings, $this->liedFields, $emailSend);
+        $lied = parent::addLied($obB24App, $formSettings, $this->liedFields);
         return($lied);
     }
    
