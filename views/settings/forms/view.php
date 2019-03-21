@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\modules\forms\models\forms\FForms */
 
 $this->title = $model->cname;
-$this->params['breadcrumbs'][] = ['label' => 'Настройки', 'url' => ['settings/index']];
+$this->params['breadcrumbs'][] = ['label' => 'Настройки'];
 $this->params['breadcrumbs'][] = ['label' => 'Формы', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -19,7 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Изменить', ['update', 'id' => $model->iid], ['class' => 'btn btn-primary']) ?>        
     </p>
 
-    <?= DetailView::widget([
+    <?=
+    DetailView::widget([
         'model' => $model,
         'attributes' => [
             'iid',
@@ -29,8 +30,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => $model->group->cname,
             ],
             'iya_counter_id',
-            'cya_metrika_target',            
+            'cya_metrika_target',
+            [
+                'label' => $model->getAttributeLabel('icrm'),
+                'value' => $model->getCrmName(),
+            ],
+            //'icrm', 
+            [
+                'label' => $model->getAttributeLabel('bemail'),
+                'attribute' => 'bemail',
+                'format' => 'raw',
+                'value' => function ($model, $widget) {
+                    return Html::checkbox('bemail[]', $model->bemail, ['value' => $index, 'disabled' => true]);
+                },
+            ],                       
         ],
-    ]) ?>
+    ])
+    ?>
 
 </div>
