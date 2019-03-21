@@ -14,24 +14,22 @@ use app\modules\forms\models\turn\TFGroups;
  * @property int $iya_counter_id
  * @property string $cya_metrika_target 
  */
-class FForms extends \yii\db\ActiveRecord
-{
+class FForms extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'forms_forms';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['cname', 'igroup_id', 'iya_counter_id', 'cya_metrika_target'], 'required'],
-            [['igroup_id', 'iya_counter_id'], 'integer'],
+            [['cname', 'igroup_id', 'iya_counter_id', 'cya_metrika_target', 'icrm', 'bemail'], 'required'],
+            [['igroup_id', 'iya_counter_id', 'icrm', 'bemail'], 'integer'],
             [['cname', 'cya_metrika_target'], 'string', 'max' => 255],
         ];
     }
@@ -39,17 +37,18 @@ class FForms extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'iid' => 'ID',
             'cname' => 'Название',
             'igroup_id' => 'Ответственная группа',
             'iya_counter_id' => 'YaCounterID',
-            'cya_metrika_target' => 'Цель в Яндекс метрике'            
+            'cya_metrika_target' => 'Цель в Яндекс метрике',
+            'icrm' => 'crm сущность',
+            'bemail' => 'Отправить на email'
         ];
     }
-    
+
     public function getGroup() {
         return $this->hasOne(TFGroups::className(), ['iid' => 'igroup_id']);
     }
@@ -59,4 +58,22 @@ class FForms extends \yii\db\ActiveRecord
 
         return $boundItem ? $boundItem->cname : '';
     }
+
+    public function getCrmName() {        
+        switch ($this->icrm) {
+            case 1:
+                return 'не создавать';
+                break;
+            case 2:
+                return 'Лид';
+                break;
+            case 3:
+                return 'Сделка';
+                break;
+            default :
+                return 'не создавать';
+                break;
+        }
+    }
+
 }

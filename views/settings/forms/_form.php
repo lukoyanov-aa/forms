@@ -19,7 +19,11 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'iya_counter_id')->textInput() ?>
 
-    <?= $form->field($model, 'cya_metrika_target')->textInput(['maxlength' => true]) ?> 
+    <?= $form->field($model, 'cya_metrika_target')->textInput(['maxlength' => true]) ?>
+    
+    <?= $form->field($model, 'icrm')->dropDownList(array("1" => "не создавать", "2" => "Лид" , "3" => "Сделка")) ?> 
+    
+    <?= $form->field($model, 'bemail')->checkbox(['class' => 'checkbox'], false) ?>     
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

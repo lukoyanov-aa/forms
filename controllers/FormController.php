@@ -22,11 +22,7 @@ class FormController extends \app\modules\b24\controllers\B24Controller {
             $formSettings = FForms::find()->where(['cname' => $actionName])->one();
             $component = new \app\components\b24Tools();
             $this->arB24App = $component->connect($this->moduleParams['applicationId'], $this->moduleParams['applicationSecret'], $this->moduleParams['b24PortalTable'], $this->moduleParams['b24PortalName'], $this->moduleParams['applicationScope']);
-            $lied = $model->addLied($this->arB24App, $formSettings);
-            if (!$lied) {
-                Yii::error('создать Лид не удалось', __METHOD__);
-                Yii::warning($model, __METHOD__);
-            }
+            $model->send($this->arB24App, $formSettings);
             return $this->render('test-confirm', compact('model', 'formSettings'));
         } else {
             if ($request->post('action') != 'submit') {

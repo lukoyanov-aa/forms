@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use yii\helpers\ArrayHelper;
+use yii\grid\CheckboxColumn;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\forms\models\forms\FFormsSearch */
@@ -33,13 +34,28 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $data->getGroupName();
                 },
                 'filter' => ArrayHelper::map($groups, 'iid', 'cname'),
-                        
             ],
             'iya_counter_id',
-            'cya_metrika_target',            
+            'cya_metrika_target',
+            [
+                'attribute' => 'icrm',
+                'content' => function($data) {                    
+                    return $data->getCrmName();                    
+                },
+                'filter' => array("1" => "не создавать", "2" => "Лид" , "3" => "Сделка"),
+            ],
+                        
+            [
+                'attribute' => 'bemail',
+                'format' => 'raw',
+                'filter' => false,
+                'value' => function ($searchModel, $index, $widget) {
+                    return Html::checkbox('bemail[]', $searchModel->bemail, ['value' => $index, 'disabled' => true]);
+                },
+            ],
             ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {update}',],
         ],
     ]);
     ?>
-<?php Pjax::end(); ?>
+    <?php Pjax::end(); ?>
 </div>
