@@ -33,7 +33,7 @@ class FTargetUrlSearch extends FTargetUrl
     }
 
     /**
-     * Creates data provider instance with search query applied
+     * Creates data provider instance with search query applead
      *
      * @param array $params
      *

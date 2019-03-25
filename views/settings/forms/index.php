@@ -38,11 +38,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'iya_counter_id',
             'cya_metrika_target',
             [
-                'attribute' => 'icrm',
+                'attribute' => 'ccrm',
                 'content' => function($data) {                    
                     return $data->getCrmName();                    
                 },
-                'filter' => array("1" => "не создавать", "2" => "Лид" , "3" => "Сделка"),
+                'filter' => array("none" => "не создавать", "lead" => "Лид" , "deal" => "Сделка"),
             ],
                         
             [

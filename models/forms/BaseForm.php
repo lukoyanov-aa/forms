@@ -3,8 +3,11 @@
 namespace app\modules\forms\models\forms;
 
 use app\modules\forms\models\settings\FTargetUrl;
+use app\modules\forms\models\settings\CrmFields;
+use app\modules\forms\models\settings\MailFields;
+use app\modules\forms\models\settings\FormFields;
 use app\modules\forms\models\turn\TFGroupsManagersSearch;
-//use app\modules\forms\models\settings\FForms;
+use yii\helpers\ArrayHelper;
 use Yii;
 
 class BaseForm extends \yii\base\Model {
@@ -30,49 +33,15 @@ class BaseForm extends \yii\base\Model {
         ];
     }
 
-    //public function addLied($obB24App = null, $managerId = 0, $sourceId = array(), $title = '', $liedFields = array()) {
-//    public function addLied($obB24App, $formSettings, $liedFields = array()) {
-//
-//        //$formSettings = FForms::find()->where(['cname' => $actionName])->one();
-//        $managerId = TFGroupsManagersSearch::getNextManager($formSettings->igroup_id);
-//        $arrTargetUrl = $this->targetUrl;
-//        $nameText = $this->nameText;
-//        $phoneArray = $this->phoneArray;
-//        $titleText = $this->parsTitleText($arrTargetUrl->cname, $this->phone);
-//        $commentsText = $this->generateCommentsText();
-//        $baseFieldsArray = [
-//            "TITLE" => $titleText,
-//            "ASSIGNED_BY_ID" => $managerId,
-//            "NAME" => $nameText,
-//            "SOURCE_ID" => $arrTargetUrl->csource_id,
-//            "PHONE" => $phoneArray,
-//            "COMMENTS" => $commentsText,
-//            "UTM_TERM" => $this->utm_term,
-//            "UTM_SOURCE" => $this->utm_source,
-//            "UTM_MEDIUM" => $this->utm_medium,
-//            "UTM_CONTENT" => $this->utm_content,
-//            "UTM_CAMPAIGN" => $this->utm_campaign,
-//        ];
-//
-//        $liedFieldsArray = array_merge($baseFieldsArray, $liedFields);
-//        if ($arrTargetUrl->cmail) {
-//            Yii::$app->mailer->compose()
-//                    ->setFrom($arrTargetUrl->cmail)//Доделать
-//                    ->setTo($arrTargetUrl->cmail)
-//                    ->setSubject($titleText)
-//                    ->setTextBody('Текст сообщения')
-//                    ->setHtmlBody($this->generateEmailBodyText($liedFields))
-//                    ->send();
-//        }
-//        $obB24Lied = new \Bitrix24\CRM\Lead($obB24App);
-//        $lied = $obB24Lied->add($liedFieldsArray);
-//        return $lied;
-//    }
+    public function send($obB24App, $formSettings) {
 
-    public function send($obB24App, $formSettings, $liedFields = array()) {
-
-        //$formSettings = FForms::find()->where(['cname' => $actionName])->one();
         $managerId = TFGroupsManagersSearch::getNextManager($formSettings->igroup_id);
+        $crmFields = CrmFields::find()->where(['iforms_id' => $formSettings->iid])->andWhere(['ctype' => $formSettings->ccrm])->all();
+        $formFields = FormFields::find()->where(['iform_id' => $formSettings->iid])->all();        
+        $crmFieldsArray = $this->fieldsPars($crmFields);
+        $mailFields = MailFields::find()->where(['iforms_id' => $formSettings->iid])->all();
+        $mailFieldsArray = $this->fieldsPars($mailFields);
+
         $arrTargetUrl = $this->targetUrl;
         $nameText = $this->nameText;
         $phoneArray = $this->phoneArray;
@@ -84,7 +53,6 @@ class BaseForm extends \yii\base\Model {
             "NAME" => $nameText,
             "SOURCE_ID" => $arrTargetUrl->csource_id,
             "PHONE" => $phoneArray,
-            "COMMENTS" => $commentsText,
             "UTM_TERM" => $this->utm_term,
             "UTM_SOURCE" => $this->utm_source,
             "UTM_MEDIUM" => $this->utm_medium,
@@ -96,30 +64,30 @@ class BaseForm extends \yii\base\Model {
                 Yii::$app->mailer->compose()
                         ->setFrom($arrTargetUrl->cmail)//Доделать
                         ->setTo($arrTargetUrl->cmail)
-                        ->setSubject($titleText)
+                        ->setSubject($mailFieldsArray['TITLE'])
                         ->setTextBody('Текст сообщения')
-                        ->setHtmlBody($this->generateEmailBodyText($liedFields))
+                        ->setHtmlBody($mailFieldsArray['BODY'])
                         ->send();
             }
         }
 
-        switch ($formSettings->icrm) {
-            case 1:
+        switch ($formSettings->ccrm) {
+            case 'none':
                 //return 'не создавать';
                 break;
-            case 2:
+            case 'lead':
                 //return 'Лид';
-                $liedFieldsArray = array_merge($baseFieldsArray, $liedFields);
-                $obB24Lied = new \Bitrix24\CRM\Lead($obB24App);
-                $lied = $obB24Lied->add($liedFieldsArray);
-                if (!$lied) {
+                $leadFieldsArray = array_merge($baseFieldsArray, $crmFieldsArray);
+                $obB24Lead = new \Bitrix24\CRM\Lead($obB24App);
+                $lead = $obB24Lead->add($leadFieldsArray);
+                if (!$lead) {
                     Yii::error('создать Лид не удалось', __METHOD__);
                     Yii::warning($this, __METHOD__);
                 }
                 break;
-            case 3:
+            case 'deal':
                 //return 'Сделка';
-                $dealFieldsArray = array_merge($baseFieldsArray, $liedFields);
+                $dealFieldsArray = array_merge($baseFieldsArray, $crmFieldsArray);
                 $obB24Deal = new \Bitrix24\CRM\Deal\Deal($obB24App);
                 $deal = $obB24Deal->add($dealFieldsArray);
                 if (!$deal) {
@@ -141,10 +109,6 @@ class BaseForm extends \yii\base\Model {
             return FTargetUrl::find()->where(['ctarget_url' => 'default'])->one();
             ;
         }
-    }
-
-    protected function generateCommentsText() {
-        return '';
     }
 
     protected function getNameText() {
@@ -201,9 +165,27 @@ class BaseForm extends \yii\base\Model {
         $text .= $this->parsFieldsToText($fields);
         return $text;
     }
+    
+    private function fieldsPars($fields) {
+        $res = [];
+        foreach (ArrayHelper::map($fields, 'cfield', 'ctext') as $key => $value) {
+            $res[$key] = $this->parsTemplate($value);
+        }
+        return $res;
+    }
 
-    protected function getLiedFields() {
-        return [];
+    private function parsTemplate($string) {
+        //$string = 'ghd fh fg f {=name} bxvhbxv bxv {=event}{=name} g bvbxvhb{=name}';
+        preg_match_all('/{=\w+}/', $string, $code);        
+        $str = preg_split('/{=\w+}/', $string);
+        $i = 1;
+        $res = $str[0];
+        while ($i < count($str)) {
+            $res .= $this->{substr($code[0][$i - 1], 2, -1)};
+            $res .= $str[$i];
+            $i++;
+        }
+        return $res;
     }
 
 }

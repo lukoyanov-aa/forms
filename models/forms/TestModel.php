@@ -22,25 +22,8 @@ class TestModel extends BaseForm {
 
     public $test;
 
-    public function rules() {
+    public function rules() {        
         return array_merge(parent::rules(), [[['test'], 'string']]);
-    }
-
-//    public function addLied($obB24App, $formSettings) {
-//        $lied = parent::addLied($obB24App, $formSettings, $this->liedFields);
-//        return($lied);
-//    }
-   
-    
-    protected function getLiedFields() {        
-        $liedFields = [
-            "UF_CRM_XXXXXXXX" => $this->test,
-        ];
-        return $liedFields;
-    }
-    
-    public function send($obB24App, $formSettings) {
-        parent::send($obB24App, $formSettings, $this->liedFields);        
     }
     
     protected function generateCommentsText() {

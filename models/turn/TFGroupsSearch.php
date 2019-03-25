@@ -33,7 +33,7 @@ class TFGroupsSearch extends TFGroups
     }
 
     /**
-     * Creates data provider instance with search query applied
+     * Creates data provider instance with search query applead
      *
      * @param array $params
      *

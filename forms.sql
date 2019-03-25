@@ -37,8 +37,34 @@ CREATE TABLE `forms_forms` (
   `igroup_id` int(11) NOT NULL,
   `iya_counter_id` int(11) NOT NULL,
   `cya_metrika_target` varchar(255) NOT NULL,
-  `icrm` int(11) NOT NULL,
+  `ccrm` varchar(255) NOT NULL,
   `bemail` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `forms_settings_crm_fields`
+--
+
+CREATE TABLE `forms_settings_crm_fields` (
+  `iid` int(11) NOT NULL,
+  `ctype` varchar(255) NOT NULL,
+  `cfield` varchar(255) NOT NULL,
+  `ctext` text NOT NULL,
+  `iforms_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `forms_settings_form_fields`
+--
+
+CREATE TABLE `forms_settings_form_fields` (
+  `iid` int(11) NOT NULL,
+  `cname` varchar(255) NOT NULL,
+  `iform_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -109,6 +135,18 @@ ALTER TABLE `b24portal`
 --
 ALTER TABLE `forms_forms`
   ADD PRIMARY KEY (`iid`);
+  
+--
+-- Индексы таблицы `forms_settings_crm_fields`
+--
+ALTER TABLE `forms_settings_crm_fields`
+  ADD PRIMARY KEY (`iid`);
+
+--
+-- Индексы таблицы `forms_settings_form_fields`
+--
+ALTER TABLE `forms_settings_form_fields`
+  ADD PRIMARY KEY (`iid`);
 
 --
 -- Индексы таблицы `forms_target_url`
@@ -143,7 +181,17 @@ ALTER TABLE `forms_turn_managers`
 -- AUTO_INCREMENT для таблицы `forms_forms`
 --
 ALTER TABLE `forms_forms`
-  MODIFY `iid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `iid` int(11) NOT NULL AUTO_INCREMENT;  
+--
+-- AUTO_INCREMENT для таблицы `forms_settings_crm_fields`
+--
+ALTER TABLE `forms_settings_crm_fields`
+  MODIFY `iid` int(11) NOT NULL AUTO_INCREMENT;COMMIT;
+--
+-- AUTO_INCREMENT для таблицы `forms_settings_form_fields`
+--
+ALTER TABLE `forms_settings_form_fields`
+  MODIFY `iid` int(11) NOT NULL AUTO_INCREMENT;COMMIT;
 --
 -- AUTO_INCREMENT для таблицы `forms_target_url`
 --

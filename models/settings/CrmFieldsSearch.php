@@ -1,16 +1,15 @@
 <?php
 
-namespace app\modules\forms\models\turn;
+namespace app\modules\forms\models\settings;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\forms\models\turn\TFManagers;
+use app\modules\forms\models\settings\CrmFields;
 
 /**
- * TFManagersSearch represents the model behind the search form of `app\modules\forms\models\turn\TFManagers`.
+ * CrmFieldsSearch represents the model behind the search form of `app\modules\forms\models\settings\CrmFields`.
  */
-class TFManagersSearch extends TFManagers
+class CrmFieldsSearch extends CrmFields
 {
     /**
      * {@inheritdoc}
@@ -18,8 +17,8 @@ class TFManagersSearch extends TFManagers
     public function rules()
     {
         return [
-            [['iid', 'ib24_user_id'], 'integer'],
-            [['cname'], 'safe'],
+            [['iid'], 'integer'],
+            [['ctype', 'cfield', 'iforms_id', 'ctext'], 'safe'],
         ];
     }
 
@@ -41,7 +40,7 @@ class TFManagersSearch extends TFManagers
      */
     public function search($params)
     {
-        $query = TFManagers::find();
+        $query = CrmFields::find();
 
         // add conditions that should always apply here
 
@@ -59,11 +58,13 @@ class TFManagersSearch extends TFManagers
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'iid' => $this->iid,
-            'ib24_user_id' => $this->ib24_user_id,
+            'iid' => $this->iid, 
+            'iforms_id' => $this->iforms_id, 
         ]);
 
-        $query->andFilterWhere(['like', 'cname', $this->cname]);
+        $query->andFilterWhere(['like', 'ctype', $this->ctype])
+            ->andFilterWhere(['like', 'cfield', $this->cfield])            
+            ->andFilterWhere(['like', 'ctext', $this->ctext]);
 
         return $dataProvider;
     }

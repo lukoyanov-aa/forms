@@ -32,10 +32,10 @@ use yii\widgets\DetailView;
             'iya_counter_id',
             'cya_metrika_target',
             [
-                'label' => $model->getAttributeLabel('icrm'),
+                'label' => $model->getAttributeLabel('ccrm'),
                 'value' => $model->getCrmName(),
             ],
-            //'icrm', 
+            //'ccrm', 
             [
                 'label' => $model->getAttributeLabel('bemail'),
                 'attribute' => 'bemail',

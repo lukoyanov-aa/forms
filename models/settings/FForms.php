@@ -28,9 +28,9 @@ class FForms extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['cname', 'igroup_id', 'iya_counter_id', 'cya_metrika_target', 'icrm', 'bemail'], 'required'],
-            [['igroup_id', 'iya_counter_id', 'icrm', 'bemail'], 'integer'],
-            [['cname', 'cya_metrika_target'], 'string', 'max' => 255],
+            [['cname', 'igroup_id', 'iya_counter_id', 'cya_metrika_target', 'ccrm', 'bemail'], 'required'],
+            [['igroup_id', 'iya_counter_id', 'bemail'], 'integer'],
+            [['cname', 'cya_metrika_target', 'ccrm'], 'string', 'max' => 255],
         ];
     }
 
@@ -44,7 +44,7 @@ class FForms extends \yii\db\ActiveRecord {
             'igroup_id' => 'Ответственная группа',
             'iya_counter_id' => 'YaCounterID',
             'cya_metrika_target' => 'Цель в Яндекс метрике',
-            'icrm' => 'crm сущность',
+            'ccrm' => 'crm сущность',
             'bemail' => 'Отправить на email'
         ];
     }
@@ -59,21 +59,33 @@ class FForms extends \yii\db\ActiveRecord {
         return $boundItem ? $boundItem->cname : '';
     }
 
-    public function getCrmName() {        
-        switch ($this->icrm) {
-            case 1:
+    public function getCrmName() {
+        switch ($this->ccrm) {
+            case 'none':
                 return 'не создавать';
                 break;
-            case 2:
+            case 'lead':
                 return 'Лид';
                 break;
-            case 3:
+            case 'deal':
                 return 'Сделка';
                 break;
             default :
                 return 'не создавать';
                 break;
         }
+    }
+
+    public function getLeadsFieldsForm() {
+        return $this->hasMany(CrmFields::className(), ['iforms_id' => 'iid',])->where(['ctype' => 'lead']);        
+    }
+
+    public function getDealsFieldsForm() {
+        return $this->hasMany(CrmFields::className(), ['iforms_id' => 'iid',])->where(['ctype' => 'deal']);       
+    }
+
+    public function getMailFieldsForm() {
+        return $this->hasMany(MailFields::className(), ['iforms_id' => 'iid',]);        
     }
 
 }

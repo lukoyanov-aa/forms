@@ -17,8 +17,8 @@ application.prototype.saveFrameWidth = function () {
     this.FrameWidth = document.getElementById("app").offsetWidth;
 };
 
-application.prototype.addCode = function (selector) {
-    $('#' + selector).val($('#' + selector).val() + $('#fields').val());
+application.prototype.addCode = function () {    
+    $('.ctext-area').val($('.ctext-area').val() + $('#fields').val());
     $('#modalFields').modal('hide')
 }
 

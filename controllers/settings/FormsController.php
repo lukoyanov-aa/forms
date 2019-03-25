@@ -8,8 +8,10 @@ use app\modules\forms\models\settings\FFormsSearch;
 use app\modules\forms\controllers\AdminSecondController;
 use app\modules\forms\models\turn\TFGroups;
 use app\modules\forms\models\settings\FTargetUrl;
+use app\modules\forms\models\settings\CrmFields;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
 
 /**
  * FormsSettingsController implements the CRUD actions for FForms model.
@@ -54,11 +56,24 @@ class FormsController extends AdminSecondController
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($id, $tab = null)
     {
-        $groups = TFGroups::find()->all();
+        if(!$tab){
+            $tab = 'base';
+        }
+        $model = $this->findModel($id);
+        $fieldsLeadDataProvider = new ActiveDataProvider(['query' => $model->getLeadsFieldsForm()]);
+        $fieldsDealDataProvider = new ActiveDataProvider(['query' => $model->getDealsFieldsForm()]);
+        $fieldsMailDataProvider = new ActiveDataProvider(['query' => $model->getMailFieldsForm()]);
+        //$groups = TFGroups::find()->all();//?
+        //$leadFields = CrmFields::find()->where(['ctype' => 'lead'])->all();
         return $this->render('view', [
-            'model' => $this->findModel($id),            
+            'model' => $model,
+            'fieldsLeadDataProvider' => $fieldsLeadDataProvider,
+            'fieldsDealDataProvider' => $fieldsDealDataProvider,
+            'fieldsMailDataProvider' => $fieldsMailDataProvider,
+            'tab' => $tab
+                
         ]);
     }
     

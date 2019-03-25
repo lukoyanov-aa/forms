@@ -1,51 +1,48 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
+use yii\grid\GridView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\forms\models\forms\FForms */
-
-//$this->title = $model->cname;
-//$this->params['breadcrumbs'][] = ['label' => 'Настройки'];
-//$this->params['breadcrumbs'][] = ['label' => 'Формы', 'url' => ['index']];
-//$this->params['breadcrumbs'][] = $this->title;
+/* @var $searchModel app\modules\forms\models\turn\TFGroupsManagersSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+$form_id = $model->iid;
 ?>
-<div class="fforms-view">
+<div class="form-fields-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
+    <?php Pjax::begin(); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]);   ?>
 
     <p>
-        <?= Html::a('Изменить', ['update', 'id' => $model->iid], ['class' => 'btn btn-primary']) ?>        
+        <?= Html::a('Добавить поле', ['settings/crm-fields/create', 'form_id' => $model->iid, 'field_type' => 'deal'], ['class' => 'btn btn-success']) ?>        
     </p>
-
     <?=
-    DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'iid',
-            'cname',
+    GridView::widget([
+        'dataProvider' => $fieldsDealDataProvider,
+        'columns' => [
+            'cfield',
+            'ctext:ntext',
             [
-                'label' => $model->getAttributeLabel('igroup_id'),
-                'value' => $model->group->cname,
+                'class' => 'yii\grid\ActionColumn',
+                'header' => 'Действия',
+                'headerOptions' => ['width' => '80'],
+                'template' => '{view} {update} {delete}',
+                'buttons' => [
+                    'update' => function ($url, $model, $key)  {
+                        return Html::a('', ['settings/crm-fields/update', 'id' => $key], ['class' => 'glyphicon glyphicon-pencil']);
+                    },
+                    'view' => function ($url, $model, $key) {
+                        return Html::a('', ['settings/crm-fields/view', 'id' => $key], ['class' => 'glyphicon glyphicon-eye-open']);
+                    },
+                    'delete' => function ($url, $model, $key) use($form_id)  {
+                        return Html::a('', ['settings/crm-fields/delete', 'id' => $key, 'form_id'=>$form_id, 'tab'=>'deal'], ['class' => 'glyphicon glyphicon-trash', 'title' => 'Удалить', 'aria-label'=>'Удалить', 'data-pjax'=>0, 'data-confirm'=>'Вы уверены, что хотите удалить этот элемент?', 'data-method'=>'post']);
+                    },     
+                ],
             ],
-            'iya_counter_id',
-            'cya_metrika_target',
-            [
-                'label' => $model->getAttributeLabel('icrm'),
-                'value' => $model->getCrmName(),
-            ],
-            //'icrm', 
-            [
-                'label' => $model->getAttributeLabel('bemail'),
-                'attribute' => 'bemail',
-                'format' => 'raw',
-                'value' => function ($model, $widget) {
-                    return Html::checkbox('bemail[]', $model->bemail, ['value' => $index, 'disabled' => true]);
-                },
-            ],                       
         ],
-    ])
+    ]);
     ?>
-
+    <?php Pjax::end(); ?>
 </div>
