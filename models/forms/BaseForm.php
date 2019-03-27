@@ -37,7 +37,7 @@ class BaseForm extends \yii\base\Model {
 
         $managerId = TFGroupsManagersSearch::getNextManager($formSettings->igroup_id);
         $crmFields = CrmFields::find()->where(['iforms_id' => $formSettings->iid])->andWhere(['ctype' => $formSettings->ccrm])->all();
-        $formFields = FormFields::find()->where(['iform_id' => $formSettings->iid])->all();        
+        $formFields = FormFields::find()->where(['iform_id' => $formSettings->iid])->all();
         $crmFieldsArray = $this->fieldsPars($crmFields);
         $mailFields = MailFields::find()->where(['iforms_id' => $formSettings->iid])->all();
         $mailFieldsArray = $this->fieldsPars($mailFields);
@@ -46,13 +46,17 @@ class BaseForm extends \yii\base\Model {
         $nameText = $this->nameText;
         $phoneArray = $this->phoneArray;
         $titleText = $this->parsTitleText($arrTargetUrl->cname, $this->phone);
-        $commentsText = $this->generateCommentsText();
+        $contactFieldsArray = [
+            "NAME" => $nameText,
+            "PHONE" => $phoneArray,
+            "SOURCE_ID" => $arrTargetUrl->csource_id,
+        ];
         $baseFieldsArray = [
             "TITLE" => $titleText,
-            "ASSIGNED_BY_ID" => $managerId,
-            "NAME" => $nameText,
+            "ASSIGNED_BY_ID" => $managerId,            
+            //"NAME" => $nameText,
             "SOURCE_ID" => $arrTargetUrl->csource_id,
-            "PHONE" => $phoneArray,
+            //"PHONE" => $phoneArray,
             "UTM_TERM" => $this->utm_term,
             "UTM_SOURCE" => $this->utm_source,
             "UTM_MEDIUM" => $this->utm_medium,
@@ -77,7 +81,7 @@ class BaseForm extends \yii\base\Model {
                 break;
             case 'lead':
                 //return 'Лид';
-                $leadFieldsArray = array_merge($baseFieldsArray, $crmFieldsArray);
+                $leadFieldsArray = array_merge($baseFieldsArray, [$crmFieldsArray, $contactFieldsArray]);
                 $obB24Lead = new \Bitrix24\CRM\Lead($obB24App);
                 $lead = $obB24Lead->add($leadFieldsArray);
                 if (!$lead) {
@@ -86,8 +90,14 @@ class BaseForm extends \yii\base\Model {
                 }
                 break;
             case 'deal':
-                //return 'Сделка';
-                $dealFieldsArray = array_merge($baseFieldsArray, $crmFieldsArray);
+                //return 'Сделка';                
+                $secondaryContactFieldsArray = [
+                    'ASSIGNED_BY_ID' =>$managerId,
+                    'TYPE_ID' => 'CLIENT',
+                    ];                
+                $obB24Contact = new \Bitrix24\CRM\Contact($obB24App); 
+                $contact = $obB24Contact->add(array_merge($contactFieldsArray, $secondaryContactFieldsArray), ['REGISTER_SONET_EVENT' => 'Y']);                
+                $dealFieldsArray = array_merge($baseFieldsArray, $crmFieldsArray, ['CONTACT_ID' => $contact['result']]);                
                 $obB24Deal = new \Bitrix24\CRM\Deal\Deal($obB24App);
                 $deal = $obB24Deal->add($dealFieldsArray);
                 if (!$deal) {
@@ -165,7 +175,7 @@ class BaseForm extends \yii\base\Model {
         $text .= $this->parsFieldsToText($fields);
         return $text;
     }
-    
+
     private function fieldsPars($fields) {
         $res = [];
         foreach (ArrayHelper::map($fields, 'cfield', 'ctext') as $key => $value) {
@@ -176,7 +186,7 @@ class BaseForm extends \yii\base\Model {
 
     private function parsTemplate($string) {
         //$string = 'ghd fh fg f {=name} bxvhbxv bxv {=event}{=name} g bvbxvhb{=name}';
-        preg_match_all('/{=\w+}/', $string, $code);        
+        preg_match_all('/{=\w+}/', $string, $code);
         $str = preg_split('/{=\w+}/', $string);
         $i = 1;
         $res = $str[0];
