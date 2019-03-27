@@ -54,9 +54,7 @@ class BaseForm extends \yii\base\Model {
         $baseFieldsArray = [
             "TITLE" => $titleText,
             "ASSIGNED_BY_ID" => $managerId,            
-            //"NAME" => $nameText,
             "SOURCE_ID" => $arrTargetUrl->csource_id,
-            //"PHONE" => $phoneArray,
             "UTM_TERM" => $this->utm_term,
             "UTM_SOURCE" => $this->utm_source,
             "UTM_MEDIUM" => $this->utm_medium,
