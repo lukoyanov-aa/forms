@@ -14,10 +14,10 @@ SET time_zone = "+00:00";
 
 
 --
--- Структура таблицы `b24portal`
+-- Структура таблицы `forms_b24portal`
 --
 
-CREATE TABLE `b24portal` (
+CREATE TABLE `forms_b24portal` (
   `PORTAL` char(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `ACCESS_TOKEN` char(70) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `REFRESH_TOKEN` char(70) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -139,9 +139,9 @@ CREATE TABLE `forms_turn_managers` (
 --
 
 --
--- Индексы таблицы `b24portal`
+-- Индексы таблицы `forms_b24portal`
 --
-ALTER TABLE `b24portal`
+ALTER TABLE `forms_b24portal`
   ADD PRIMARY KEY (`PORTAL`);
 
 --

@@ -8,7 +8,7 @@ return [
         'applicationSecret' => 'XRmkEt0jHzjByztJl022miCTVzUFrY8zAJWflPEiO48p6EWX8S', 
         'applicationScope' => ['user', 'crm'],
         'applicationName' => ['forms'],
-        'b24PortalTable' => 'b24portal',
+        'b24PortalTable' => 'forms_b24portal',
         'b24PortalName' => 'o-mir.bitrix24.ru'
     ],
 ];
