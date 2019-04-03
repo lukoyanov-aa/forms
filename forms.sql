@@ -70,6 +70,19 @@ CREATE TABLE `forms_settings_form_fields` (
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `forms_settings_mail_fields`
+--
+
+CREATE TABLE `forms_settings_mail_fields` (
+  `iid` int(11) NOT NULL,
+  `cfield` varchar(255) NOT NULL,
+  `ctext` text,
+  `iforms_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `forms_target_url`
 --
 
@@ -147,6 +160,13 @@ ALTER TABLE `forms_settings_crm_fields`
 --
 ALTER TABLE `forms_settings_form_fields`
   ADD PRIMARY KEY (`iid`);
+
+--
+-- Индексы таблицы `forms_settings_mail_fields`
+--
+ALTER TABLE `forms_settings_mail_fields`
+  ADD PRIMARY KEY (`iid`),
+  ADD UNIQUE KEY `cfield_iforms_id` (`cfield`,`iforms_id`);
 
 --
 -- Индексы таблицы `forms_target_url`
