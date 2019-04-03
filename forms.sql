@@ -64,8 +64,9 @@ CREATE TABLE `forms_settings_crm_fields` (
 CREATE TABLE `forms_settings_form_fields` (
   `iid` int(11) NOT NULL,
   `cname` varchar(255) NOT NULL,
-  `iform_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `iform_id` int(11) NOT NULL,
+  `ctitle` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8; 
 
 -- --------------------------------------------------------
 
@@ -236,3 +237,27 @@ ALTER TABLE `forms_turn_managers`
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
+
+--
+-- Дамп данных таблицы `forms_turn_groups`
+--
+
+INSERT INTO `forms_turn_groups` (`iid`, `cname`) VALUES
+(1, 'Основная группа');
+
+--
+-- Дамп данных таблицы `forms_target_url`
+--
+
+INSERT INTO `forms_target_url` (`iid`, `cname`, `ctitle`, `csource_id`, `ctarget_url`, `cmail`) VALUES
+(1, 'По умолчанию', 'по умолчанию', 'WEB', 'default', '');
+
+--
+-- Дамп данных таблицы `forms_settings_form_fields`
+--
+
+INSERT INTO `forms_settings_form_fields` (`iid`, `cname`, `iform_id`, `ctitle`) VALUES
+(1, 'name', 0, 'Имя'),
+(2, 'phone', 0, 'Номер телефона'),
+(3, 'target', 0, 'Место расположение формы'),
+(4, 'url', 0, 'Страница');
