@@ -215,6 +215,11 @@ ALTER TABLE `forms_settings_crm_fields`
 ALTER TABLE `forms_settings_form_fields`
   MODIFY `iid` int(11) NOT NULL AUTO_INCREMENT;COMMIT;
 --
+-- AUTO_INCREMENT для таблицы `forms_settings_mail_fields`
+--
+ALTER TABLE `forms_settings_mail_fields`
+  MODIFY `iid` int(11) NOT NULL AUTO_INCREMENT;COMMIT;
+--
 -- AUTO_INCREMENT для таблицы `forms_target_url`
 --
 ALTER TABLE `forms_target_url`
