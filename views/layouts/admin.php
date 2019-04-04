@@ -81,6 +81,18 @@ $this->registerJs($script, yii\web\View::POS_READY);
                                 ['label' => 'Формы', 'url' => '/web/forms/settings/forms/index'],
                             ],
                         ],
+                        [
+                            'label' => 'Доп. параметры',
+                            'items' => [
+//                                ['label' => 'Источники', 'url' => '/web/forms/settings/target-url/index'],                               
+                            ],
+                        ],
+                        [
+                            'label' => 'Доступ',
+                            'items' => [
+//                                ['label' => 'Источники', 'url' => '/web/forms/settings/target-url/index'],                               
+                            ],
+                        ],
                     ],
                 ]);
                 NavBar::end();
