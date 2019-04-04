@@ -34,7 +34,6 @@ class CrmFieldsController extends AdminSecondController {
      * @return mixed
      */
     public function actionIndex() {
-        Yii::warning(Yii::$app->request);
         $searchModel = new CrmFieldsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -98,11 +97,6 @@ class CrmFieldsController extends AdminSecondController {
                     $fieldsList = $this->fieldsList($dealFields['result']);
                     break;
             }
-
-            //Yii::warning($fieldsList);
-//            $obB24Users = new \Bitrix24\User\User($b24App);
-//            $b24users = $obB24Users->get('ID', '', ['ACTIVE' => true]);
-//            $usersList = $this->usersList($b24users);
             return $this->render('create', [
                         'model' => $model,
                         'fieldsList' => $fieldsList,
@@ -115,11 +109,21 @@ class CrmFieldsController extends AdminSecondController {
         $res = [];
         foreach ($arr as $key => $value) {
             //if ($value['type'] == 'string' and ! $value['isMultiple']) {
-            if (stripos($key, 'UF_CRM') !== false and $value['type'] == 'string' or stripos($key, 'COMMENTS') !== false) {
+            if (stripos($key, 'UF_CRM') !== false and $value['type'] == 'string' or $value['type'] == 'date' or stripos($key, 'COMMENTS') !== false) {
                 if (stripos($key, 'UF_CRM') === false) {
-                    $res[$key] = $value['title'];
+                    array_push($res, [
+                        'id' => $key,
+                        'title' => $value['title'],
+                        'type' => $value['type']
+                    ]);
+                    //$res[$key] = $value['title'];
                 } else {
-                    $res[$key] = $value['formLabel'];
+                    //$res[$key] = $value['formLabel'];
+                    array_push($res, [
+                        'id' => $key,
+                        'title' => $value['formLabel'],
+                        'type' => $value['type']
+                    ]);
                 }
             }
         }

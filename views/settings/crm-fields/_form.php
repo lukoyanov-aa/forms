@@ -7,6 +7,19 @@ use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model app\modules\forms\models\settings\CrmFields */
 /* @var $form yii\widgets\ActiveForm */
+$ft = json_encode(ArrayHelper::map($fieldsList, 'id', 'type'));
+
+$js = <<<JS
+        fields_type = $ft;
+        console.log(fields_type);
+        $('#crmfields-cfield').change(function () {
+            console.log(fields_type[$('#crmfields-cfield').val()]);
+            $('#crmfields-cfields_type').val(fields_type[$('#crmfields-cfield').val()]);
+        });
+        
+        
+JS;
+$this->registerJs($js);
 ?>
 <!-- Modal -->
 <div class="modal fade" id="modalFields" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -51,8 +64,10 @@ use yii\helpers\ArrayHelper;
 <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'ctype')->hiddenInput(['maxlength' => true])->label(false); ?>
+    
+    <?= $form->field($model, 'cfields_type')->hiddenInput(['maxlength' => true])->label(false); ?>
 
-    <?= $form->field($model, 'cfield')->dropDownList($fieldsList) ?>
+    <?= $form->field($model, 'cfield')->dropDownList(ArrayHelper::map($fieldsList, 'id', 'title'), ['prompt' => 'Выберите поле...']) ?>
 
     <?= $form->field($model, 'ctext')->textarea(['rows' => 6, 'class'=>'ctext-area form-control']) ?>
     <button type="button" class="btn btn-light" data-toggle="modal" data-target="#modalFields" data-field="crmfields-ctext">

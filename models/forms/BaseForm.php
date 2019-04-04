@@ -53,7 +53,7 @@ class BaseForm extends \yii\base\Model {
         ];
         $baseFieldsArray = [
             "TITLE" => $titleText,
-            "ASSIGNED_BY_ID" => $managerId,            
+            "ASSIGNED_BY_ID" => $managerId,
             "SOURCE_ID" => $arrTargetUrl->csource_id,
             "UTM_TERM" => $this->utm_term,
             "UTM_SOURCE" => $this->utm_source,
@@ -90,12 +90,12 @@ class BaseForm extends \yii\base\Model {
             case 'deal':
                 //return 'Сделка';                
                 $secondaryContactFieldsArray = [
-                    'ASSIGNED_BY_ID' =>$managerId,
+                    'ASSIGNED_BY_ID' => $managerId,
                     'TYPE_ID' => 'CLIENT',
-                    ];                
-                $obB24Contact = new \Bitrix24\CRM\Contact($obB24App); 
-                $contact = $obB24Contact->add(array_merge($contactFieldsArray, $secondaryContactFieldsArray), ['REGISTER_SONET_EVENT' => 'Y']);                
-                $dealFieldsArray = array_merge($baseFieldsArray, $crmFieldsArray, ['CONTACT_ID' => $contact['result']]);                
+                ];
+                $obB24Contact = new \Bitrix24\CRM\Contact($obB24App);
+                $contact = $obB24Contact->add(array_merge($contactFieldsArray, $secondaryContactFieldsArray), ['REGISTER_SONET_EVENT' => 'Y']);
+                $dealFieldsArray = array_merge($baseFieldsArray, $crmFieldsArray, ['CONTACT_ID' => $contact['result']]);
                 $obB24Deal = new \Bitrix24\CRM\Deal\Deal($obB24App);
                 $deal = $obB24Deal->add($dealFieldsArray);
                 if (!$deal) {
@@ -176,24 +176,38 @@ class BaseForm extends \yii\base\Model {
 
     private function fieldsPars($fields) {
         $res = [];
-        foreach (ArrayHelper::map($fields, 'cfield', 'ctext') as $key => $value) {
+        foreach (ArrayHelper::map($fields, 'cfields_type', 'ctext', 'cfield') as $key => $value) {
             $res[$key] = $this->parsTemplate($value);
         }
         return $res;
     }
 
-    private function parsTemplate($string) {
-        //$string = 'ghd fh fg f {=name} bxvhbxv bxv {=event}{=name} g bvbxvhb{=name}';
-        preg_match_all('/{=\w+}/', $string, $code);
-        $str = preg_split('/{=\w+}/', $string);
-        $i = 1;
-        $res = $str[0];
-        while ($i < count($str)) {
-            $res .= $this->{substr($code[0][$i - 1], 2, -1)};
-            $res .= $str[$i];
-            $i++;
+    private function parsTemplate($arr) {
+        if (array_key_exists('string', $arr)) {
+            $string = $arr['string'];
+            //$string = 'ghd fh fg f {=name} bxvhbxv bxv {=event}{=name} g bvbxvhb{=name}';
+            preg_match_all('/{=\w+}/', $string, $code);
+            $str = preg_split('/{=\w+}/', $string);
+            $i = 1;
+            $res = $str[0];
+            while ($i < count($str)) {
+                $res .= $this->{substr($code[0][$i - 1], 2, -1)};
+                $res .= $str[$i];
+                $i++;
+            }
+            return $res;
         }
-        return $res;
+        if (array_key_exists('date', $arr)) {
+            $date_string = $arr['date'];
+            //$string = 'ghd fh fg f {=name} bxvhbxv bxv {=event}{=name} g bvbxvhb{=name}';
+            preg_match_all('/{=\w+}/', $date_string, $code);
+            if (count($code) != 1) {
+                return false;
+            }
+            $res = date($this->{substr($code[0][0], 2, -1)});
+            return $res;
+        }
+        return false;
     }
 
 }

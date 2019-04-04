@@ -48,6 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'ctype',
             'cfield',
             'ctext:ntext',
+            'cfields_type',
             'iforms_id',
         ],
     ]) ?>
