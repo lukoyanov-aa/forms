@@ -29,10 +29,10 @@ class MailFields extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cfield', 'iforms_id'], 'required'],
+            [['cfield', 'iforms_id', 'cfields_type'], 'required'],
             [['ctext'], 'string'],
             [['iforms_id'], 'integer'],
-            [['cfield'], 'string', 'max' => 255],
+            [['cfield', 'cfields_type'], 'string', 'max' => 255],
             [['cfield', 'iforms_id'], 'unique', 'targetAttribute' => ['cfield', 'iforms_id']],
         ];
     }
@@ -47,6 +47,7 @@ class MailFields extends \yii\db\ActiveRecord
             'cfield' => 'Поле',
             'ctext' => 'Шаблон',
             'iforms_id' => 'Форма',
+            'cfields_type' => 'Тип поля',
         ];
     }
 }

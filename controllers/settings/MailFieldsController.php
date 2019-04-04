@@ -78,6 +78,7 @@ class MailFieldsController extends AdminSecondController {
         } else {
             if ($request->post('action') != 'submit') {
                 $model->iforms_id = $form_id;
+                $model->cfields_type = 'string';
             }
             $fieldsList = ['TITLE'=>'Заголовок', 'BODY'=>'Текст письма'];
             return $this->render('create', [

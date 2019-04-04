@@ -48,7 +48,9 @@ use yii\helpers\ArrayHelper;
 ?>
 <div class="mail-fields-form">
 
-<?php $form = ActiveForm::begin(); ?>  
+<?php $form = ActiveForm::begin(); ?>    
+       
+    <?= $form->field($model, 'cfields_type')->hiddenInput(['maxlength' => true])->label(false); ?>
 
     <?= $form->field($model, 'cfield')->dropDownList($fieldsList) ?>
 

@@ -79,6 +79,7 @@ CREATE TABLE `forms_settings_mail_fields` (
   `iid` int(11) NOT NULL,
   `cfield` varchar(255) NOT NULL,
   `ctext` text,
+  `cfields_type` varchar(255) NOT NULL,
   `iforms_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

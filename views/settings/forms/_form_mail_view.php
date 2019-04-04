@@ -24,6 +24,7 @@ $form_id = $model->iid;
         'columns' => [
             'cfield',
             'ctext:ntext',
+            'cfields_type',
             [
                 'class' => 'yii\grid\ActionColumn',
                 'header' => 'Действия',

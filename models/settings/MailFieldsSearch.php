@@ -9,24 +9,22 @@ use app\modules\forms\models\settings\MailFields;
 /**
  * MailFieldsSearch represents the model behind the search form of `app\modules\forms\models\settings\MailFields`.
  */
-class MailFieldsSearch extends MailFields
-{
+class MailFieldsSearch extends MailFields {
+
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['iid'], 'integer'],
-            [['cfield', 'iforms_id', 'ctext'], 'safe'],
+            [['cfield', 'iforms_id', 'ctext', 'cfields_type'], 'safe'],
         ];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -38,8 +36,7 @@ class MailFieldsSearch extends MailFields
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
+    public function search($params) {
         $query = CrmFields::find();
 
         // add conditions that should always apply here
@@ -58,13 +55,15 @@ class MailFieldsSearch extends MailFields
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'iid' => $this->iid, 
-            'iforms_id' => $this->iforms_id, 
+            'iid' => $this->iid,
+            'iforms_id' => $this->iforms_id,
         ]);
 
-        $query->andFilterWhere(['like', 'cfield', $this->cfield])            
-            ->andFilterWhere(['like', 'ctext', $this->ctext]);
+        $query->andFilterWhere(['like', 'cfield', $this->cfield])
+                ->andFilterWhere(['like', 'cfields_type', $this->cfields_type])
+                ->andFilterWhere(['like', 'ctext', $this->ctext]);
 
         return $dataProvider;
     }
+
 }

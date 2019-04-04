@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'ctype',
             'cfield',
             'ctext:ntext',
+            'cfields_type',
             //'iforms_id',
 
             ['class' => 'yii\grid\ActionColumn'],
