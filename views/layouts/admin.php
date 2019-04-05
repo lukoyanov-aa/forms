@@ -17,12 +17,15 @@ AppAsset::register($this);
 $this->registerJsFile($assetsUrl->baseUrl . '/js/application.js');
 
 $script = <<< JS
-    $(document).ready(function () {		 
+    $(document).ready(function () {		
+		 
         BX24.init(function(){                        
                 app.saveFrameWidth();
-                app.resizeFrame();
-        });        
-    });    
+
+        });
+        frame = BX24.getScrollSize();
+        BX24.resizeWindow(frame.scrollWidth, 1200);
+    });   
 JS;
 //маркер конца строки, обязательно сразу, без пробелов и табуляции
 $this->registerJs($script, yii\web\View::POS_READY);
