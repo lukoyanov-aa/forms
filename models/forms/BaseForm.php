@@ -64,7 +64,7 @@ class BaseForm extends \yii\base\Model {
         if ($formSettings->bemail) {
             if ($arrTargetUrl->cmail) {
                 Yii::$app->mailer->compose()
-                        ->setFrom($arrTargetUrl->cmail)//Доделать
+                        ->setFrom(\Yii::$app->controller->module->params['mail'])
                         ->setTo($arrTargetUrl->cmail)
                         ->setSubject($mailFieldsArray['TITLE'])
                         ->setTextBody('Текст сообщения')

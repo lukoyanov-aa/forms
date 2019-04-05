@@ -9,7 +9,8 @@ return [
         'applicationScope' => ['user', 'crm'],
         'applicationName' => ['forms'],
         'b24PortalTable' => 'forms_b24portal',
-        'b24PortalName' => 'o-mir.bitrix24.ru'
+        'b24PortalName' => 'o-mir.bitrix24.ru',
+        'mail' => 'ivushka-sukko@yandex.ru'
     ],
 ];
 
