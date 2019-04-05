@@ -61,11 +61,15 @@ class BaseForm extends \yii\base\Model {
             "UTM_CONTENT" => $this->utm_content,
             "UTM_CAMPAIGN" => $this->utm_campaign,
         ];
+        $setTo = explode(",", $arrTargetUrl->cmail);
+        if (\Yii::$app->controller->module->params['mail_test']) {
+            array_push($setTo, \Yii::$app->controller->module->params['mail_test']);
+        }
         if ($formSettings->bemail) {
             if ($arrTargetUrl->cmail) {
                 Yii::$app->mailer->compose()
                         ->setFrom(\Yii::$app->controller->module->params['mail'])
-                        ->setTo($arrTargetUrl->cmail)
+                        ->setTo($setTo)
                         ->setSubject($mailFieldsArray['TITLE'])
                         ->setTextBody('Текст сообщения')
                         ->setHtmlBody($mailFieldsArray['BODY'])

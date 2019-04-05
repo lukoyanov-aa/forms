@@ -10,7 +10,8 @@ return [
         'applicationName' => ['forms'],
         'b24PortalTable' => 'forms_b24portal',
         'b24PortalName' => 'o-mir.bitrix24.ru',
-        'mail' => 'ivushka-sukko@yandex.ru'
+        'mail' => 'ivushka-sukko@yandex.ru',
+        'mail_test' => 'ivushka-sukko@yandex.ru'
     ],
 ];
 
