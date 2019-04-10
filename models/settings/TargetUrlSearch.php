@@ -5,12 +5,12 @@ namespace app\modules\forms\models\settings;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\forms\models\settings\FTargetUrl;
+use app\modules\forms\models\settings\TargetUrl;
 
 /**
- * FTargetUrlSearch represents the model behind the search form of `app\modules\forms\models\b24\FTargetUrl`.
+ * TargetUrlSearch represents the model behind the search form of `app\modules\forms\models\b24\TargetUrl`.
  */
-class FTargetUrlSearch extends FTargetUrl
+class TargetUrlSearch extends TargetUrl
 {
     /**
      * {@inheritdoc}
@@ -41,7 +41,7 @@ class FTargetUrlSearch extends FTargetUrl
      */
     public function search($params)
     {
-        $query = FTargetUrl::find();
+        $query = TargetUrl::find();
 
         // add conditions that should always apply here
 

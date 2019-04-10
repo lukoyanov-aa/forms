@@ -3,18 +3,18 @@
 namespace app\modules\forms\controllers\settings;
 
 use Yii;
-use app\modules\forms\models\settings\FForms;
-use app\modules\forms\models\settings\FFormsSearch;
+use app\modules\forms\models\settings\Forms;
+use app\modules\forms\models\settings\FormsSearch;
 use app\modules\forms\controllers\AdminSecondController;
 use app\modules\forms\models\turn\TFGroups;
-use app\modules\forms\models\settings\FTargetUrl;
+use app\modules\forms\models\settings\TargetUrl;
 use app\modules\forms\models\settings\CrmFields;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
 
 /**
- * FormsSettingsController implements the CRUD actions for FForms model.
+ * FormsSettingsController implements the CRUD actions for Forms model.
  */
 class FormsController extends AdminSecondController
 {
@@ -34,12 +34,12 @@ class FormsController extends AdminSecondController
     }
 
     /**
-     * Lists all FForms models.
+     * Lists all Forms models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new FFormsSearch();
+        $searchModel = new FormsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $groups = TFGroups::find()->all();
 
@@ -51,7 +51,7 @@ class FormsController extends AdminSecondController
     }
 
     /**
-     * Displays a single FForms model.
+     * Displays a single Forms model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -79,7 +79,7 @@ class FormsController extends AdminSecondController
     
 
     /**
-     * Updates an existing FForms model.
+     * Updates an existing Forms model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -102,15 +102,15 @@ class FormsController extends AdminSecondController
     
 
     /**
-     * Finds the FForms model based on its primary key value.
+     * Finds the Forms model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return FForms the loaded model
+     * @return Forms the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = FForms::findOne($id)) !== null) {
+        if (($model = Forms::findOne($id)) !== null) {
             return $model;
         }
 

@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\forms\models\b24\FTargetUrl */
+/* @var $model app\modules\forms\models\b24\TargetUrl */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 

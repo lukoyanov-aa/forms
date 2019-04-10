@@ -2,7 +2,7 @@
 
 namespace app\modules\forms\models\forms;
 
-use app\modules\forms\models\settings\FTargetUrl;
+use app\modules\forms\models\settings\TargetUrl;
 use app\modules\forms\models\settings\CrmFields;
 use app\modules\forms\models\settings\MailFields;
 use app\modules\forms\models\settings\FormFields;
@@ -114,11 +114,11 @@ class BaseForm extends \yii\base\Model {
     }
 
     public function getTargetUrl() {
-        if (FTargetUrl::find()->where(['ctarget_url' => $this->target . '_' . $this->url])->count()) {
-            return FTargetUrl::find()->where(['ctarget_url' => $this->target . '_' . $this->url])->one();
+        if (TargetUrl::find()->where(['ctarget_url' => $this->target . '_' . $this->url])->count()) {
+            return TargetUrl::find()->where(['ctarget_url' => $this->target . '_' . $this->url])->one();
             ;
         } else {
-            return FTargetUrl::find()->where(['ctarget_url' => 'default'])->one();
+            return TargetUrl::find()->where(['ctarget_url' => 'default'])->one();
             ;
         }
     }

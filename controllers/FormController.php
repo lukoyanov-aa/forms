@@ -5,7 +5,7 @@ namespace app\modules\forms\controllers;
 use Yii;
 use \yii\web\HttpException;
 use app\modules\forms\models\forms\TestModel;
-use app\modules\forms\models\settings\FForms;
+use app\modules\forms\models\settings\Forms;
 
 class FormController extends \app\modules\b24\controllers\B24Controller {
 
@@ -19,7 +19,7 @@ class FormController extends \app\modules\b24\controllers\B24Controller {
         $model = new TestModel();
         if ($model->load($request->post()) && $model->validate()) {
             $actionName = Yii::$app->controller->action->id;
-            $formSettings = FForms::find()->where(['cname' => $actionName])->one();
+            $formSettings = Forms::find()->where(['cname' => $actionName])->one();
             $component = new \app\components\b24Tools();
             $this->arB24App = $component->connect($this->moduleParams['applicationId'], $this->moduleParams['applicationSecret'], $this->moduleParams['b24PortalTable'], $this->moduleParams['b24PortalName'], $this->moduleParams['applicationScope']);
             $model->send($this->arB24App, $formSettings);

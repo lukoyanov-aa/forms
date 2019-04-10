@@ -5,11 +5,11 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\forms\models\forms\FForms */
+/* @var $model app\modules\forms\models\forms\Forms */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="fforms-form">
+<div class="forms-form">
 
     <?php $form = ActiveForm::begin(); ?>
 

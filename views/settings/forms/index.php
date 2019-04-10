@@ -7,14 +7,14 @@ use yii\helpers\ArrayHelper;
 use yii\grid\CheckboxColumn;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\modules\forms\models\forms\FFormsSearch */
+/* @var $searchModel app\modules\forms\models\forms\FormsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Формы';
 $this->params['breadcrumbs'][] = ['label' => 'Настройки'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="fforms-index">
+<div class="forms-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php Pjax::begin(); ?>

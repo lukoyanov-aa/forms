@@ -6,7 +6,7 @@ use yii\bootstrap\Tabs;
 //use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\forms\models\forms\FForms */
+/* @var $model app\modules\forms\models\forms\Forms */
 
 $this->title = $model->cname;
 $this->params['breadcrumbs'][] = ['label' => 'Настройки'];

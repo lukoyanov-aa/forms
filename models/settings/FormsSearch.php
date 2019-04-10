@@ -5,12 +5,12 @@ namespace app\modules\forms\models\settings;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\forms\models\settings\FForms;
+use app\modules\forms\models\settings\Forms;
 
 /**
- * FFormsSearch represents the model behind the search form of `app\modules\forms\models\forms\FForms`.
+ * FormsSearch represents the model behind the search form of `app\modules\forms\models\forms\Forms`.
  */
-class FFormsSearch extends FForms {
+class FormsSearch extends Forms {
 
     /**
      * {@inheritdoc}
@@ -38,7 +38,7 @@ class FFormsSearch extends FForms {
      * @return ActiveDataProvider
      */
     public function search($params) {
-        $query = FForms::find();
+        $query = Forms::find();
 
         // add conditions that should always apply here
 

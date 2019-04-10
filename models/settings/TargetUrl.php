@@ -13,7 +13,7 @@ use Yii;
  * @property int $isource_id 
  * @property string $ctarget_url
  */
-class FTargetUrl extends \yii\db\ActiveRecord {
+class TargetUrl extends \yii\db\ActiveRecord {
 
     /**
      * {@inheritdoc}

@@ -14,7 +14,7 @@ use app\modules\forms\models\turn\TFGroups;
  * @property int $iya_counter_id
  * @property string $cya_metrika_target 
  */
-class FForms extends \yii\db\ActiveRecord {
+class Forms extends \yii\db\ActiveRecord {
 
     /**
      * {@inheritdoc}

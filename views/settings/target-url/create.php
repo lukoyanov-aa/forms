@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\forms\models\b24\FTargetUrl */
+/* @var $model app\modules\forms\models\b24\TargetUrl */
 
 $this->title = 'Добавление Источник';
 $this->params['breadcrumbs'][] = ['label' => 'Настройки'];

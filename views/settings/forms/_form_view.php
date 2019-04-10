@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\forms\models\forms\FForms */
+/* @var $model app\modules\forms\models\forms\Forms */
 
 //$this->title = $model->cname;
 //$this->params['breadcrumbs'][] = ['label' => 'Настройки'];
 //$this->params['breadcrumbs'][] = ['label' => 'Формы', 'url' => ['index']];
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="fforms-view">
+<div class="forms-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
