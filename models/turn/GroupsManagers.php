@@ -11,7 +11,7 @@ use Yii;
  * @property int $igroups_id
  * @property int $imanagers_id
  */
-class TFGroupsManagers extends \yii\db\ActiveRecord
+class GroupsManagers extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -45,7 +45,7 @@ class TFGroupsManagers extends \yii\db\ActiveRecord
         ];
     }
     public function getGroup(){
-        return $this->hasOne(TFGroups::className(), ['iid' => 'igroups_id']);
+        return $this->hasOne(Groups::className(), ['iid' => 'igroups_id']);
     }
     
     public static function getNextManager($groupId = null) {
@@ -65,7 +65,7 @@ class TFGroupsManagers extends \yii\db\ActiveRecord
                     ->one();
             $manager->iturn_id = $managerMax->iturn_id + 1;
             $manager->save();
-            $manager_ = TFManagers::find()
+            $manager_ = Managers::find()
                     ->where(['iid' => $manager->imanagers_id])
                     ->one();
             return $manager_->ib24_user_id;

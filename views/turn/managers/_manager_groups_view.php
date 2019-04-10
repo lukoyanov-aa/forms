@@ -5,7 +5,7 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\modules\forms\models\turn\TFGroupsManagersSearch */
+/* @var $searchModel app\modules\forms\models\turn\GroupsManagersSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 

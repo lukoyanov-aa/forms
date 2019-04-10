@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\forms\models\turn\TFGroupsManagers */
+/* @var $model app\modules\forms\models\turn\GroupsManagers */
 
 $this->title = 'Update Tfgroups Managers: ' . $model->iid;
 $this->params['breadcrumbs'][] = ['label' => 'Tfgroups Managers', 'url' => ['index']];

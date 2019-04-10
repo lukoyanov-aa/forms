@@ -11,7 +11,7 @@ use Yii;
  * @property int $ib24_user_id
  * @property string $cname
  */
-class TFManagers extends \yii\db\ActiveRecord {
+class Managers extends \yii\db\ActiveRecord {
 
     /**
      * {@inheritdoc}
@@ -43,12 +43,12 @@ class TFManagers extends \yii\db\ActiveRecord {
     }
 
     public function getGroupsManagers() {
-        return $this->hasMany(TFGroupsManagers::className(), ['imanagers_id' => 'iid']);
+        return $this->hasMany(GroupsManagers::className(), ['imanagers_id' => 'iid']);
         //->viaTable('tf_groups_managers', ['imanagers_id'=>'iid']);
     }
 
     public function getGroup() {
-        return $this->hasMany(TFGroups::className(), ['iid' => 'igroups_id'])
+        return $this->hasMany(Groups::className(), ['iid' => 'igroups_id'])
                         ->viaTable('tf_groups_managers', ['imanagers_id' => 'iid']);
     }
 

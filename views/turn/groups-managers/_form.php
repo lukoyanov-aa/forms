@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\forms\models\turn\TFGroupsManagers */
+/* @var $model app\modules\forms\models\turn\GroupsManagers */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 

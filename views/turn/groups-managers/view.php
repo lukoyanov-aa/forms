@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\forms\models\turn\TFGroupsManagers */
+/* @var $model app\modules\forms\models\turn\GroupsManagers */
 
 $this->title = $model->iid;
 $this->params['breadcrumbs'][] = ['label' => 'Tfgroups Managers', 'url' => ['index']];

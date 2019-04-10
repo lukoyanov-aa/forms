@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\forms\models\turn\TFManagers */
+/* @var $model app\modules\forms\models\turn\Managers */
 /* @var $form yii\widgets\ActiveForm */
 //$model->category_id = array(22,20); 
  

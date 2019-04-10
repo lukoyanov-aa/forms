@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\forms\models\turn\TFGroupsManagers */
+/* @var $model app\modules\forms\models\turn\GroupsManagers */
 
 $this->title = 'Добавление в группу';
 $this->params['breadcrumbs'][] = 'Распределение';

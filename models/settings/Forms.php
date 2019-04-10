@@ -3,7 +3,7 @@
 namespace app\modules\forms\models\settings;
 
 use Yii;
-use app\modules\forms\models\turn\TFGroups;
+use app\modules\forms\models\turn\Groups;
 
 /**
  * This is the model class for table "f_forms".
@@ -51,7 +51,7 @@ class Forms extends \yii\db\ActiveRecord {
     }
 
     public function getGroup() {
-        return $this->hasOne(TFGroups::className(), ['iid' => 'igroup_id']);
+        return $this->hasOne(Groups::className(), ['iid' => 'igroup_id']);
     }
 
     public function getGroupName() {

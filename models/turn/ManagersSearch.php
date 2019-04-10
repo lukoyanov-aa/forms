@@ -5,12 +5,12 @@ namespace app\modules\forms\models\turn;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\forms\models\turn\TFManagers;
+use app\modules\forms\models\turn\Managers;
 
 /**
- * TFManagersSearch represents the model behind the search form of `app\modules\forms\models\turn\TFManagers`.
+ * ManagersSearch represents the model behind the search form of `app\modules\forms\models\turn\Managers`.
  */
-class TFManagersSearch extends TFManagers
+class ManagersSearch extends Managers
 {
     /**
      * {@inheritdoc}
@@ -41,7 +41,7 @@ class TFManagersSearch extends TFManagers
      */
     public function search($params)
     {
-        $query = TFManagers::find();
+        $query = Managers::find();
 
         // add conditions that should always apply here
 

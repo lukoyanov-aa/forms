@@ -6,7 +6,7 @@ use Yii;
 use app\modules\forms\models\settings\Forms;
 use app\modules\forms\models\settings\FormsSearch;
 use app\modules\forms\controllers\AdminSecondController;
-use app\modules\forms\models\turn\TFGroups;
+use app\modules\forms\models\turn\Groups;
 use app\modules\forms\models\settings\TargetUrl;
 use app\modules\forms\models\settings\CrmFields;
 use yii\web\NotFoundHttpException;
@@ -41,7 +41,7 @@ class FormsController extends AdminSecondController
     {
         $searchModel = new FormsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $groups = TFGroups::find()->all();
+        $groups = Groups::find()->all();
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -65,7 +65,7 @@ class FormsController extends AdminSecondController
         $fieldsLeadDataProvider = new ActiveDataProvider(['query' => $model->getLeadsFieldsForm()]);
         $fieldsDealDataProvider = new ActiveDataProvider(['query' => $model->getDealsFieldsForm()]);
         $fieldsMailDataProvider = new ActiveDataProvider(['query' => $model->getMailFieldsForm()]);
-        //$groups = TFGroups::find()->all();//?
+        //$groups = Groups::find()->all();//?
         //$leadFields = CrmFields::find()->where(['ctype' => 'lead'])->all();
         return $this->render('view', [
             'model' => $model,
@@ -88,7 +88,7 @@ class FormsController extends AdminSecondController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $groups = TFGroups::find()->all();        
+        $groups = Groups::find()->all();        
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->iid]);

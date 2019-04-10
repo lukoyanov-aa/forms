@@ -3,15 +3,15 @@
 namespace app\modules\forms\controllers\turn;
 
 use Yii;
-use app\modules\forms\models\turn\TFGroups;
-use app\modules\forms\models\turn\TFGroupsSearch;
+use app\modules\forms\models\turn\Groups;
+use app\modules\forms\models\turn\GroupsSearch;
 //use app\modules\forms\controllers\TurnController;
 use app\modules\forms\controllers\AdminSecondController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * GroupsController implements the CRUD actions for TFGroups model.
+ * GroupsController implements the CRUD actions for Groups model.
  */
 class GroupsController extends AdminSecondController
 {
@@ -31,12 +31,12 @@ class GroupsController extends AdminSecondController
     }
 
     /**
-     * Lists all TFGroups models.
+     * Lists all Groups models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new TFGroupsSearch();
+        $searchModel = new GroupsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -46,7 +46,7 @@ class GroupsController extends AdminSecondController
     }
 
     /**
-     * Displays a single TFGroups model.
+     * Displays a single Groups model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -59,13 +59,13 @@ class GroupsController extends AdminSecondController
     }
 
     /**
-     * Creates a new TFGroups model.
+     * Creates a new Groups model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new TFGroups();
+        $model = new Groups();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->iid]);
@@ -77,7 +77,7 @@ class GroupsController extends AdminSecondController
     }
 
     /**
-     * Updates an existing TFGroups model.
+     * Updates an existing Groups model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -97,7 +97,7 @@ class GroupsController extends AdminSecondController
     }
 
     /**
-     * Deletes an existing TFGroups model.
+     * Deletes an existing Groups model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -111,15 +111,15 @@ class GroupsController extends AdminSecondController
     }
 
     /**
-     * Finds the TFGroups model based on its primary key value.
+     * Finds the Groups model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return TFGroups the loaded model
+     * @return Groups the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = TFGroups::findOne($id)) !== null) {
+        if (($model = Groups::findOne($id)) !== null) {
             return $model;
         }
 

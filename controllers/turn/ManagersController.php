@@ -3,8 +3,8 @@
 namespace app\modules\forms\controllers\turn;
 
 use Yii;
-use app\modules\forms\models\turn\TFManagers;
-use app\modules\forms\models\turn\TFManagersSearch;
+use app\modules\forms\models\turn\Managers;
+use app\modules\forms\models\turn\ManagersSearch;
 //use app\modules\forms\controllers\TurnController;
 use app\modules\forms\controllers\AdminSecondController;
 use yii\web\NotFoundHttpException;
@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
 
 /**
- * ManagersController implements the CRUD actions for TFManagers model.
+ * ManagersController implements the CRUD actions for Managers model.
  */
 class ManagersController extends AdminSecondController {
 
@@ -31,11 +31,11 @@ class ManagersController extends AdminSecondController {
     }
 
     /**
-     * Lists all TFManagers models.
+     * Lists all Managers models.
      * @return mixed
      */
     public function actionIndex() {
-        $searchModel = new TFManagersSearch();
+        $searchModel = new ManagersSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class ManagersController extends AdminSecondController {
     }
 
     /**
-     * Displays a single TFManagers model.
+     * Displays a single Managers model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -62,12 +62,12 @@ class ManagersController extends AdminSecondController {
     }
 
     /**
-     * Creates a new TFManagers model.
+     * Creates a new Managers model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate() {
-        $model = new TFManagers();
+        $model = new Managers();
 
         $session = Yii::$app->session;
         $AccessParams = $session->get('AccessParams');
@@ -88,7 +88,7 @@ class ManagersController extends AdminSecondController {
     }
 
     /**
-     * Updates an existing TFManagers model.
+     * Updates an existing Managers model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -117,7 +117,7 @@ class ManagersController extends AdminSecondController {
     }
 
     /**
-     * Deletes an existing TFManagers model.
+     * Deletes an existing Managers model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -130,14 +130,14 @@ class ManagersController extends AdminSecondController {
     }
 
     /**
-     * Finds the TFManagers model based on its primary key value.
+     * Finds the Managers model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return TFManagers the loaded model
+     * @return Managers the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id) {
-        if (($model = TFManagers::findOne($id)) !== null) {
+        if (($model = Managers::findOne($id)) !== null) {
             return $model;
         }
 

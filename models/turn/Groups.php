@@ -10,7 +10,7 @@ use Yii;
  * @property int $iid
  * @property string $cname
  */
-class TFGroups extends \yii\db\ActiveRecord
+class Groups extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}

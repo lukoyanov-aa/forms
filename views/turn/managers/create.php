@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\forms\models\turn\TFManagers */
+/* @var $model app\modules\forms\models\turn\Managers */
 
 $this->title = 'Добавление менеджера';
 $this->params['breadcrumbs'][] = 'Распределение';

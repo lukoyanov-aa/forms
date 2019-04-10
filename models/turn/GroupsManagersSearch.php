@@ -5,12 +5,12 @@ namespace app\modules\forms\models\turn;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\forms\models\turn\TFGroupsManagers;
+use app\modules\forms\models\turn\GroupsManagers;
 
 /**
- * TFGroupsManagersSearch represents the model behind the search form of `app\modules\forms\models\turn\TFGroupsManagers`.
+ * GroupsManagersSearch represents the model behind the search form of `app\modules\forms\models\turn\GroupsManagers`.
  */
-class TFGroupsManagersSearch extends TFGroupsManagers
+class GroupsManagersSearch extends GroupsManagers
 {
     /**
      * {@inheritdoc}
@@ -40,7 +40,7 @@ class TFGroupsManagersSearch extends TFGroupsManagers
      */
     public function search($params)
     {
-        $query = TFGroupsManagers::find();
+        $query = GroupsManagers::find();
 
         // add conditions that should always apply here
 

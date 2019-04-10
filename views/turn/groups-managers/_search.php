@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\forms\models\turn\TFGroupsManagersSearch */
+/* @var $model app\modules\forms\models\turn\GroupsManagersSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 

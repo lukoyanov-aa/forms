@@ -6,7 +6,7 @@ use app\modules\forms\models\settings\TargetUrl;
 use app\modules\forms\models\settings\CrmFields;
 use app\modules\forms\models\settings\MailFields;
 use app\modules\forms\models\settings\FormFields;
-use app\modules\forms\models\turn\TFGroupsManagersSearch;
+use app\modules\forms\models\turn\GroupsManagersSearch;
 use yii\helpers\ArrayHelper;
 use Yii;
 
@@ -35,7 +35,7 @@ class BaseForm extends \yii\base\Model {
 
     public function send($obB24App, $formSettings) {
 
-        $managerId = TFGroupsManagersSearch::getNextManager($formSettings->igroup_id);
+        $managerId = GroupsManagersSearch::getNextManager($formSettings->igroup_id);
         $crmFields = CrmFields::find()->where(['iforms_id' => $formSettings->iid])->andWhere(['ctype' => $formSettings->ccrm])->all();
         $formFields = FormFields::find()->where(['iform_id' => $formSettings->iid])->all();
         $crmFieldsArray = $this->fieldsPars($crmFields);

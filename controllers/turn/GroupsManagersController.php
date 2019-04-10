@@ -3,16 +3,16 @@
 namespace app\modules\forms\controllers\turn;
 
 use Yii;
-use app\modules\forms\models\turn\TFGroupsManagers;
-use app\modules\forms\models\turn\TFGroupsManagersSearch;
-use app\modules\forms\models\turn\TFGroups;
-use app\modules\forms\models\turn\TFManagers;
+use app\modules\forms\models\turn\GroupsManagers;
+use app\modules\forms\models\turn\GroupsManagersSearch;
+use app\modules\forms\models\turn\Groups;
+use app\modules\forms\models\turn\Managers;
 use app\modules\forms\controllers\AdminSecondController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * GroupsManagersController implements the CRUD actions for TFGroupsManagers model.
+ * GroupsManagersController implements the CRUD actions for GroupsManagers model.
  */
 class GroupsManagersController extends AdminSecondController {
 
@@ -31,11 +31,11 @@ class GroupsManagersController extends AdminSecondController {
     }
 
     /**
-     * Lists all TFGroupsManagers models.
+     * Lists all GroupsManagers models.
      * @return mixed
      */
     public function actionIndex() {
-        $searchModel = new TFGroupsManagersSearch();
+        $searchModel = new GroupsManagersSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class GroupsManagersController extends AdminSecondController {
     }
 
     /**
-     * Displays a single TFGroupsManagers model.
+     * Displays a single GroupsManagers model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -57,20 +57,20 @@ class GroupsManagersController extends AdminSecondController {
     }
 
     /**
-     * Creates a new TFGroupsManagers model.
+     * Creates a new GroupsManagers model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate($imanagers_id = null) {
-        $model = new TFGroupsManagers();
+        $model = new GroupsManagers();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['turn/managers/view', 'id'=>$imanagers_id]);
         }
 
         $model->imanagers_id = $imanagers_id;
-        $groups = TFGroups::find()->all();
-        $manager = TFManagers::find()->where(['iid' => $imanagers_id])->one();
+        $groups = Groups::find()->all();
+        $manager = Managers::find()->where(['iid' => $imanagers_id])->one();
 
         return $this->render('create', [
                     'model' => $model,
@@ -80,7 +80,7 @@ class GroupsManagersController extends AdminSecondController {
     }
 
     /**
-     * Updates an existing TFGroupsManagers model.
+     * Updates an existing GroupsManagers model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -99,7 +99,7 @@ class GroupsManagersController extends AdminSecondController {
     }
 
     /**
-     * Deletes an existing TFGroupsManagers model.
+     * Deletes an existing GroupsManagers model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -112,14 +112,14 @@ class GroupsManagersController extends AdminSecondController {
     }
 
     /**
-     * Finds the TFGroupsManagers model based on its primary key value.
+     * Finds the GroupsManagers model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return TFGroupsManagers the loaded model
+     * @return GroupsManagers the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id) {
-        if (($model = TFGroupsManagers::findOne($id)) !== null) {
+        if (($model = GroupsManagers::findOne($id)) !== null) {
             return $model;
         }
 
