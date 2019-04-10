@@ -21,6 +21,8 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'cya_metrika_target')->textInput(['maxlength' => true]) ?>
     
+    <?= $form->field($model, 'cgoogle_id')->textInput(['maxlength' => true]) ?>
+    
     <?= $form->field($model, 'ccrm')->dropDownList(array("none" => "не создавать", "lead" => "Лид" , "deal" => "Сделка")) ?> 
     
     <?= $form->field($model, 'bemail')->checkbox(['class' => 'checkbox'], false) ?>     

@@ -18,7 +18,7 @@ class FFormsSearch extends FForms {
     public function rules() {
         return [
             [['iid', 'igroup_id', 'iya_counter_id', 'bemail'], 'integer'],
-            [['cname', 'cya_metrika_target', 'ccrm'], 'safe'],
+            [['cname', 'cya_metrika_target', 'ccrm', 'cgoogle_id'], 'safe'],
         ];
     }
 
@@ -64,6 +64,7 @@ class FFormsSearch extends FForms {
 
         $query->andFilterWhere(['like', 'cname', $this->cname])
                 ->andFilterWhere(['like', 'ccrm', $this->ccrm])
+                ->andFilterWhere(['like', 'cgoogle_id', $this->cgoogle_id])
                 ->andFilterWhere(['like', 'cya_metrika_target', $this->cya_metrika_target]);
 
         return $dataProvider;

@@ -31,6 +31,7 @@ use yii\widgets\DetailView;
             ],
             'iya_counter_id',
             'cya_metrika_target',
+            'cgoogle_id',
             [
                 'label' => $model->getAttributeLabel('ccrm'),
                 'value' => $model->getCrmName(),

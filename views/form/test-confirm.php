@@ -23,6 +23,25 @@ $yametrika = <<<JS
         }
 JS;
 $this->registerJs($yametrika);
+$google_id = explode("/", $formSettings->cgoogle_id);
+$this->registerJsFile('https://www.googletagmanager.com/gtag/js?id='.$google_id[0],['position' => $this::POS_END, 'async'=>'async']);
+$gtag = <<<JS
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', '$google_id[0]');
+        function gtag_report_conversion() {
+            gtag('event', 'conversion', {
+                'send_to': '$formSettings->cgoogle_id'                
+            });            
+        }
+         window.onload = function() {
+            gtag_report_conversion();
+        }
+JS;
+$this->registerJs($gtag);
 ?>
 
 <section class="bg-light u-content-space">

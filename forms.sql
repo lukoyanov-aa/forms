@@ -37,6 +37,7 @@ CREATE TABLE `forms_forms` (
   `igroup_id` int(11) NOT NULL,
   `iya_counter_id` int(11) NOT NULL,
   `cya_metrika_target` varchar(255) NOT NULL,
+  `cgoogle_id` varchar(255) NOT NULL,
   `ccrm` varchar(255) NOT NULL,
   `bemail` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -28,9 +28,9 @@ class FForms extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['cname', 'igroup_id', 'iya_counter_id', 'cya_metrika_target', 'ccrm', 'bemail'], 'required'],
+            [['cname', 'igroup_id', 'iya_counter_id', 'cya_metrika_target', 'cgoogle_id', 'ccrm', 'bemail'], 'required'],
             [['igroup_id', 'iya_counter_id', 'bemail'], 'integer'],
-            [['cname', 'cya_metrika_target', 'ccrm'], 'string', 'max' => 255],
+            [['cname', 'cya_metrika_target', 'ccrm', 'cgoogle_id'], 'string', 'max' => 255],
         ];
     }
 
@@ -45,7 +45,8 @@ class FForms extends \yii\db\ActiveRecord {
             'iya_counter_id' => 'YaCounterID',
             'cya_metrika_target' => 'Цель в Яндекс метрике',
             'ccrm' => 'crm сущность',
-            'bemail' => 'Отправить на email'
+            'bemail' => 'Отправить на email',
+            'cgoogle_id' => 'Conversion ID/Ярлык конверсии'
         ];
     }
 

@@ -36,6 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => ArrayHelper::map($groups, 'iid', 'cname'),
             ],
             'iya_counter_id',
+            'cgoogle_id',
             'cya_metrika_target',
             [
                 'attribute' => 'ccrm',
