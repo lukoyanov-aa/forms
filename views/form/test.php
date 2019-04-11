@@ -51,6 +51,8 @@ $this->registerJs($js);
                         ?>
                     </div>
                     <div class="col-md-6">
+                        <?= $form->field($model, 'security')->checkbox(['class' => 'checkbox'], false)->label('С <a href="#">условиями обработки персональных данных</a> согласен') ?>
+                        С <a href="#">условиями обработки персональных данных</a> согласен
                         <?=
                         Html::submitButton('Оставить заявку', [
                             'class' => 'form-group btn btn-md u-btn-primary rounded',

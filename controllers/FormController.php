@@ -33,6 +33,7 @@ class FormController extends \app\modules\b24\controllers\B24Controller {
                 $model->utm_campaign = $request->get('utm_campaign');
                 $model->utm_term = $request->get('utm_term');
                 $model->utm_content = $request->get('utm_content');
+                $model->security = 1;
             }
             return $this->render('test', compact('model'));
         }

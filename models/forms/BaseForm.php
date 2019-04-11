@@ -24,10 +24,13 @@ class BaseForm extends \yii\base\Model {
     public $utm_campaign;
     public $utm_term;
     public $utm_content;
+    public $security;
 
     public function rules() {
         return [
             [['name', 'target', 'url', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'], 'string'],
+            [['security'], 'integer'],
+            ['security', 'required', 'message' => 'Вы не согласились с условиями обработки персональных данных'],
             ['phone', 'required', 'message' => 'Пожалуйста, введите телефонный номер'],
             ['phone', 'match', 'pattern' => '/^[+]{1}[0-9]{11}$/', 'message' => ' Пожалуйста введите правильный номер телефона'],
         ];
